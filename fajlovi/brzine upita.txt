@@ -1,0 +1,17 @@
+//testirano nad shop.sql u ovom folderu
+select * from (osobina o inner join vrednost_proizvod_osobina vpo on o.idOsobina=vpo.idOsobina) inner join vrednost v on vpo.idVrednost=v.idVrednost
+
+0.0015 - 1 proizvod sa 5 osobina
+
+select * from (osobina o inner join vrednost_proizvod_osobina vpo on o.idOsobina=vpo.idOsobina) inner join vrednost v on vpo.idVrednost=v.idVrednost where vpo.idProizvod=1
+
+0.0008 - 5 osobina
+
+select * from (osobina o inner join vrednost_proizvod_osobina vpo on o.idOsobina=vpo.idOsobina) inner join vrednost v on vpo.idVrednost=v.idVrednost where vpo.idProizvod=1 and vpo.status=1
+
+0.0009 - 5 osobina
+
+select o.nazivOsobina, o.jedinica, v.nazivVrednost from (osobina o inner join vrednost_proizvod_osobina vpo on o.idOsobina=vpo.idOsobina) inner join vrednost v on vpo.idVrednost=v.idVrednost where vpo.idProizvod=1 and vpo.status=1
+
+0.0010 - 5 osobina
+

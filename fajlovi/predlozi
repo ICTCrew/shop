@@ -1,5 +1,8 @@
--pretraga po imenu
--pretraga po modelu
+-pretraga po nazivu
+-pretraga po brendu
+-pretraga po kategoriji (već uključeno u prikazu kategorija)
 -sortiranje po ceni
--uporedjivanje proizvoda
+-prikaz sličnih proizvoda
+-uporedjivanje proizvoda istog tipa
+-komentarisanje
 -itd dodajte dalje...
