@@ -120,6 +120,11 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
+    public function idInsertPretplata($uneseno){
+        $this->db->insert('pretplata',$uneseno);
+        return $this->db->insert_id();  
+    }
+    
     public function idInsertProizvod($uneseno){
         $this->db->insert('proizvod',$uneseno);
         return $this->db->insert_id();  
@@ -180,6 +185,172 @@ class admin_model extends CI_Model{
      * 
      */
     
+    //////////////////////////////////////////////////////
+    
+    /**
+     * sintaksa: insert"NazivTabele"($niz)
+     * isto vazi za sve "insert" funkcije
+     * 
+     * @param type $uneseno - asoc. niz - indeksi=nazivi kolona, 
+     *                                    vrednosti=zapisi za insert
+     * 
+     */
+    public function insertBrend($uneseno){
+        $this->db->insert('brend',$uneseno);
+    }
+    
+    public function insertCena($uneseno){
+        $this->db->insert('cena',$uneseno);
+    }
+    
+    public function insertConfShop($uneseno){
+        $this->db->insert('conf_shop',$uneseno);
+    }
+    
+    public function insertDobavljac($uneseno){
+        $this->db->insert('dobavljac',$uneseno);
+    }
+    
+    public function insertDrzava($uneseno){
+        $this->db->insert('drzava',$uneseno);
+    }
+
+    public function insertGrad($uneseno){
+        $this->db->insert('grad',$uneseno);
+    }
+    
+    public function insertGrupa($uneseno){
+        $this->db->insert('grupa',$uneseno);
+    }
+    
+    public function insertKategorija($uneseno){
+        $this->db->insert('kategorija',$uneseno);
+    }
+    
+    public function insertKomentar($uneseno){
+        $this->db->insert('komentar',$uneseno);
+    }
+    
+    public function insertKorisnik($uneseno){
+        $this->db->insert('korisnik',$uneseno);
+    }
+    
+    public function insertKurir($uneseno){
+        $this->db->insert('kurir',$uneseno);
+    }
+    
+    public function insertMeni($uneseno){
+        $this->db->insert('meni',$uneseno);
+    }
+    
+    public function insertNabavka($uneseno){
+        $this->db->insert('nabavka',$uneseno);
+    }
+    
+    public function insertNacinIsporuke($uneseno){
+        $this->db->insert('nacin_isporuke',$uneseno);
+    }
+    
+    public function insertNacinKurirPlacanje($uneseno){
+        $this->db->insert('nacin_kurir_placanje',$uneseno);
+    }
+    
+    public function insertNacinPlacanja($uneseno){
+        $this->db->insert('nacin_placanja',$uneseno);
+    }
+    
+    public function insertOsobina($uneseno){
+        $this->db->insert('osobina',$uneseno);
+    }
+    
+    public function insertPopust($uneseno){
+        $this->db->insert('popust',$uneseno);
+    }
+    
+    public function insertPorudzbina($uneseno){
+        $this->db->insert('porudzbina',$uneseno);
+    }
+    
+    public function insertPretplata($uneseno){
+        $this->db->insert('pretplata',$uneseno);  
+    }
+    
+    public function insertProizvod($uneseno){
+        $this->db->insert('proizvod',$uneseno);
+    }
+    
+    public function insertProizvodGrupa($uneseno){
+        $this->db->insert('proizvod_grupa',$uneseno);
+    }
+    
+    public function insertProizvodPopust($uneseno){
+        $this->db->insert('proizvod_popust',$uneseno);
+    }
+    
+    public function insertProizvodPorudzbina($uneseno){
+        $this->db->insert('proizvod_porudzbina',$uneseno);
+    }
+    
+    public function insertProizvodRelacija($uneseno){
+        $this->db->insert('proizvod_relacija',$uneseno);
+    }
+    
+    public function insertSlajder($uneseno){
+        $this->db->insert('slajder',$uneseno);
+    }
+    
+    public function insertSlajderSlika($uneseno){
+        $this->db->insert('slajder_slika',$uneseno);
+    }
+    
+    public function insertSlajderSlikaVeza($uneseno){
+        $this->db->insert('slajder_slika_veza',$uneseno);
+    }
+    
+    public function insertSlika($uneseno){
+        $this->db->insert('slika',$uneseno);
+    }
+    
+    public function insertStranica($uneseno){
+        $this->db->insert('stranica',$uneseno);
+    }
+    
+    public function insertTipOsobina($uneseno){
+        $this->db->insert('tip_osobina',$uneseno);
+    }
+    
+    public function insertTipPopust($uneseno){
+        $this->db->insert('tip_popust',$uneseno);
+    }
+    
+    public function insertTipProizvoda($uneseno){
+        $this->db->insert('tip_proizvoda',$uneseno);
+    }
+    
+    public function insertTipRelacija($uneseno){
+        $this->db->insert('tip_relacija',$uneseno);
+    }
+    
+    public function insertUloga($uneseno){
+        $this->db->insert('uloga',$uneseno);
+    }
+    
+    public function insertValuta($uneseno){
+        $this->db->insert('valuta',$uneseno); 
+    }
+    
+    public function insertVrednost($uneseno){
+        $this->db->insert('vrednost',$uneseno);
+    }
+    
+    public function insertVrednostProizvodOsobina($uneseno){
+        $this->db->insert('vrednost_proizvod_osobina',$uneseno);
+    }
+    /**
+     * 
+     * kraj "insert" funkcija
+     * 
+     */
    
     
 }
