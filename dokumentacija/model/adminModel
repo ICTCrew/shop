@@ -1,0 +1,100 @@
+-admin_model
+
+    
+    get($tip) 
+        input:  $tip(string) - naziv tabele
+        output: $niz(array) - asoc niz, sve vrednosti iz tabele
+        
+    
+    /**
+     * sintaksa: idInsert"NazivTabele"($niz)
+     * isto vazi za sve "idInsert" funkcije
+     * 
+     * @param type $uneseno - asoc. niz - indeksi=nazivi kolona, vrednosti=zapisi za insert
+     * @return type int - id unetog zapisa
+     */
+    idInsertBrend($uneseno)
+    idInsertCena($uneseno)
+    idInsertDobavljac($uneseno)
+    idInsertDrzava($uneseno)
+    idInsertGrad($uneseno)
+    idInsertGrupa($uneseno)
+    idInsertKategorija($uneseno)
+    idInsertKomentar($uneseno)
+    idInsertKorisnik($uneseno)
+    idInsertKurir($uneseno)
+    idInsertMeni($uneseno)
+    idInsertNabavka($uneseno)
+    idInsertNacinIsporuke($uneseno)
+    idInsertNacinKurirPlacanje($uneseno)
+    idInsertNacinPlacanja($uneseno)
+    idInsertOsobina($uneseno)
+    idInsertPopust($uneseno)
+    idInsertPorudzbina($uneseno)
+    idInsertPretplata($uneseno)
+    idInsertProizvod($uneseno)
+    idInsertSlajder($uneseno)
+    idInsertSlajderSlika($uneseno)
+    idInsertSlika($uneseno)
+    idInsertStranica($uneseno)
+    idInsertTipPopust($uneseno)
+    idInsertTipProizvoda($uneseno)
+    idInsertTipRelacija($uneseno)
+    idInsertUloga($uneseno)
+    idInsertValuta($uneseno)
+    idInsertVrednost($uneseno)
+
+   //kraj "idInsert" funkcija
+   //////////////////////////////////////////////////////
+    
+    /**
+     * sintaksa: insert"NazivTabele"($niz)
+     * isto vazi za sve "insert" funkcije
+     * 
+     * @param type $uneseno - asoc. niz - indeksi=nazivi kolona, 
+     *                                    vrednosti=zapisi za insert
+     * 
+     */
+    insertBrend($uneseno)
+    insertCena($uneseno)
+    insertConfShop($uneseno)
+    insertDobavljac($uneseno)
+    insertDrzava($uneseno)
+    insertGrad($uneseno)
+    insertGrupa($uneseno)
+    insertKategorija($uneseno)
+    insertKomentar($uneseno)
+    insertKorisnik($uneseno)
+    insertKurir($uneseno)
+    insertMeni($uneseno)
+    insertNabavka($uneseno)
+    insertNacinIsporuke($uneseno)
+    insertNacinKurirPlacanje($uneseno)
+    insertNacinPlacanja($uneseno)
+    insertOsobina($uneseno)
+    insertPopust($uneseno)
+    insertPorudzbina($uneseno)
+    insertPretplata($uneseno)
+    insertProizvod($uneseno)
+    insertProizvodGrupa($uneseno)
+    insertProizvodPopust($uneseno)
+    insertProizvodPorudzbina($uneseno)
+    insertProizvodRelacija($uneseno)
+    insertSlajder($uneseno)
+    insertSlajderSlika($uneseno)
+    insertSlajderSlikaVeza($uneseno)
+    insertSlika($uneseno)
+    insertStranica($uneseno)
+    insertTipOsobina($uneseno)
+    insertTipPopust($uneseno)
+    insertTipProizvoda($uneseno)
+    insertTipRelacija($uneseno)
+    insertUloga($uneseno)
+    insertValuta($uneseno)
+    insertVrednost($uneseno)
+    insertVrednostProizvodOsobina($uneseno)
+   
+    // kraj "insert" funkcija
+    //////////////////////////////////////
+    
+}
