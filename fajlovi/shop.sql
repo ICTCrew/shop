@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `idUloga` mediumint(8) NOT NULL,
   `idGrad` mediumint(8) NOT NULL,
   `aktivacioniKod` char(64) COLLATE utf8_unicode_ci NOT NULL,
-  `datumKreiranja` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datumKreiranja` timestamp NOT NULL DEFAULT 0,
   `datumRodjenja` timestamp NULL DEFAULT NULL,
   `ime` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `prezime` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
