@@ -15,5 +15,3 @@ select o.nazivOsobina, o.jedinica, v.nazivVrednost from (osobina o inner join vr
 
 0.0010 - 5 osobina
 
-bbb
-
