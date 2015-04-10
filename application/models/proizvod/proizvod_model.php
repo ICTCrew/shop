@@ -15,11 +15,10 @@ class proizvod_model extends CI_Model{
     }
     
     //nezavršen
-    public function getProizvodiKategorije($idKategorija) {
+    public function getProizvodiKategorije($idKategorija, $limit, $offset) {
         $query= $this->db->select('idProizvod, idTipProizvod, idBrend, idSlika, title, description, modelOpis, opis, prikazCenaStatus, statusPopust, cena');
-        $query= $this->db->from('proizvod');
         $query= $this->db->where('idKategorija', $idKategorija);
-        $query= $this->db->get();
+        $query= $this->db->get('proizvod', $limit, $offset);
         return $query->result_array();
     }
     
