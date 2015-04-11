@@ -21,4 +21,4 @@
      * @param type $offset - odakle
      * @return type - asoc niz trazenih kolona
      */
-    public function getKolone($tabela, $niz, $limit=0, $offset=0)
+    -getKolone($tabela, $niz, $limit=0, $offset=0)

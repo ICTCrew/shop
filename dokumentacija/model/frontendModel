@@ -1,0 +1,7 @@
+frontendModel
+
+    -getSlajder($idSlajder)
+        input - idSlajdera
+        output - 'putanjaSlika', 'url', 'title' - slika iz trazenog slajdera
+
+        
