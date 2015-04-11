@@ -45,13 +45,13 @@ class Proizvod_model extends CI_Model{
      * kraj metoda za grupne proizvode
      */
     
-    //nekompletan, radi
+    
     //na prosledjen idProizvoda vraca ostale podatke
     public function getProizvod($idProizvod) {
-        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, idSlika, title, description, modelOpis, opis, prikazCenaStatus, statusPopust, cena');
-        $query= $this->db->from('proizvod');
+        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, prikazCenaStatus, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->get();
+        $query= $this->db->get('proizvod p');
         return $query->result_array();
     }
     

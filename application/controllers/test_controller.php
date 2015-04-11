@@ -17,7 +17,7 @@ class Test_Controller extends FrontEnd_Controller{
        
         $data1=array('idProizvod', 'modelOpis', 'opis');
         
-        $data=  $this->proizvod_model->getOsobine(1);
+        $data=  $this->proizvod_model->getProizvod(1);
         //$data['title']='Home';
         //$data['ulogovan']=false;
         
