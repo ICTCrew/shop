@@ -55,6 +55,23 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
+    /**
+     * vraca osobine za zadati idProizvoda
+     * @param type $idProizvod
+     * @return type assoc. array indeksi - 'nazivosobina', 'jedinica', 'nazivVrednost'
+     */
+    public function getOsobine($idProizvod) {
+        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
+        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
+        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
+        $query= $this->db->where('idProizvod', $idProizvod);
+        $query= $this->db->where('vpo.status', 1);
+        $query= $this->db->get('osobina o');
+        return $query->result_array();
+    }
+
+    
+    
     //univerzalni test SELECT
     /**
      * 
