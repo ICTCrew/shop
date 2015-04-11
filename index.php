@@ -289,5 +289,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
-        define('EXT', '.php');// naknadno dodao, nije radilo bez ovoga, ne znam zasto!
+        define('EXT', '.php');// naknadno dodao, nije radilo bez ekstenzije za putanje ka controller i core folderu
 require_once BASEPATH.'core/CodeIgniter.php';
