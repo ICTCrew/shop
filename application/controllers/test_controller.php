@@ -10,14 +10,18 @@ class Test_Controller extends FrontEnd_Controller{
     public function __construct() {
         parent::__construct();
         //$this->load->model('admin_model');
-        $this->load->model('proizvod_model');
+        $this->load->model('proizvod/proizvod_model');
     }
     
     public function index() {
-        $data['sadrzaj']=  $this->proizvod_model->dohvatiSadrzajMain();
+       
+        $data1=array('idProizvod', 'modelOpis', 'opis');
         
+        $data=  $this->proizvod_model->getKolone('proizvod', $data1, 2,1);
+        //$data['title']='Home';
+        //$data['ulogovan']=false;
         
-        print_r($data);
+        $this->load_view($data);
     }
     
     

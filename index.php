@@ -289,4 +289,5 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+        define('EXT', '.php');// naknadno dodao, nije radilo bez ovoga, ne znam zasto!
 require_once BASEPATH.'core/CodeIgniter.php';

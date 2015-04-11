@@ -1,0 +1,24 @@
+-proizvod_model
+
+    -getProizvodiKategorije($idKategorija, $limit=0, $offset=0)
+        input: id kategorije, limit, ofset
+        output: asoc niz grupe proizvoda iz zadate kategorije
+
+    -getProizvodiBrenda($idBrend, $limit=0, $offset=0)
+        input: id brenda, limit, ofset
+        output: asoc niz grupe proizvoda iz zadatog brenda
+
+    -getProizvod($idProizvod)
+        input: id proizvoda
+        output: svi podaci o datom proizvodu
+
+
+    /**
+     * univerzalni test SELECT
+     * @param type $tabela - naziv tabele
+     * @param type $niz - niz sa nazivima trazenih kolona
+     * @param type $limit - koliko
+     * @param type $offset - odakle
+     * @return type - asoc niz trazenih kolona
+     */
+    public function getKolone($tabela, $niz, $limit=0, $offset=0)

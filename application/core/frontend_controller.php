@@ -14,17 +14,17 @@ class FrontEnd_Controller extends MY_Controller {
         //$this->load->model('frontend_model');
     }
     
-    public function load_view($view, $data) {
+    public function load_view($data) {
+        /**
+         * 
+        $this->load->model('frontend_model');
         
-        //$this->load->model('frontend_model');
-        
-        
-        /*
         $this->load->view('template/header', $data);
         $this->load->view('template/aside', $data);
         $this->load->view($view, $data);
         $this->load->view('template/footer', $data);
          * 
          */
+        print_r($data);
     }
 }
