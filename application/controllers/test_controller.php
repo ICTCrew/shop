@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Description of prince
+ * Description of test_controller
  *
  * @author Matic
  */

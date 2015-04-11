@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of FrontEnd_Controller
+ * Description of MY_Controller
  *
  * @author Matic
  */
