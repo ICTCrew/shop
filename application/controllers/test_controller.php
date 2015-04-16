@@ -12,6 +12,7 @@ class Test_Controller extends FrontEnd_Controller{
         $this->load->model('admin/admin_model');
         $this->load->model('proizvod/proizvod_model');
         $this->load->model('frontend_model');
+        $this->load->model('backend_model');
         
     }
     
@@ -36,9 +37,13 @@ class Test_Controller extends FrontEnd_Controller{
         
         $data=  $this->frontend_model->getKategorija();
         
+        $niz=array('prvi', 'drugi', 'treci', 'cet', 'peti', 'sesti', 'sedmi', 'osmi', 'deveti', 'deseti');
         
+        //$data=$niz;
+        $data=  serialize($niz);
+        $data=  unserialize($data);
         
-        
+        $data=  $this->backend_model->search("pretraga");
         
         //$data['title']='Home';
         //$data['ulogovan']=false;
