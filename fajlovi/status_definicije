@@ -1,0 +1,41 @@
+-status(general):
+    0-"obrisan" iz baze
+    1-aktivan
+
+-status(korisnik):
+    0-"obrisan" iz baze
+    1-neaktivan
+    2-aktivan (aktivacionim kodom)
+    3-prosao placanje
+
+-statusMeni, statusLink(meni)
+    0-"obrisan" iz baze
+    1-aktivan
+
+-statusPlaceno(nabavka)
+    0-nije placeno
+    1-placeno
+
+-statusIsporuka(porudzbina)
+    0-nije isporuceno
+    1-isporuceno
+
+-statusPlaceno(porudzbina)
+    0-nije placeno
+    1-placeno
+
+-statuskolicinaVidljivost(proizvod)
+    0-ne prikazuj kada nema na lageru
+    1-prikazi sa porukom da trenutno nema na lageru
+
+-statusPrikazCena(proizvod)
+    0-prikaz bez PDV-a
+    1-prikaz sa PDV-om
+    2-prikaz obe cene
+
+-statusPopust(proizvod)
+    0-nema popust
+    1-ima popust
+
+    
+
