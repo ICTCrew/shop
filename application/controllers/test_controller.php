@@ -13,6 +13,7 @@ class Test_Controller extends FrontEnd_Controller{
         $this->load->model('proizvod/proizvod_model');
         $this->load->model('frontend_model');
         $this->load->model('backend_model');
+        $this->load->model('korisnik_model');
         
     }
     
@@ -44,6 +45,10 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  unserialize($data);
         
         $data=  $this->backend_model->search("pretraga");
+        
+        $data=  $this->korisnik_model->getKorisnik('bilja@bla.com', 'bilja86');
+        
+        $data=  $this->korisnik_model->getPorudzbine(1);
         
         //$data['title']='Home';
         //$data['ulogovan']=false;
