@@ -48,7 +48,7 @@ class Proizvod_model extends CI_Model{
     
     //na prosledjen idProizvoda vraca ostale podatke
     public function getProizvod($idProizvod) {
-        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, prikazCenaStatus, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
+        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, osobine, prikazCenaStatus, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idProizvod', $idProizvod);
         $query= $this->db->get('proizvod p');
@@ -91,6 +91,23 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->select($columns);
         $query= $this->db->get($tabela, $limit, $offset);
         return $query->result_array();
+    }
+    
+    public function prepisiOsobine($idProizvod) {
+        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
+        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
+        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
+        $query= $this->db->where('idProizvod', $idProizvod);
+        $query= $this->db->where('vpo.status', 1);
+        $query= $this->db->get('osobina o');
+        $osobine= $query->result_array();
+        $string="";
+        foreach ($osobine as $osobina) {
+            $string.=$osobina['nazivOsobina']."|".$osobina['nazivVrednost']."|".$osobina['jedinica']."*";
+        }
+        $data=array('osobine'=>$string);
+        $query=  $this->db->where('idProizvod', $idProizvod);
+        $query=  $this->db->update('proizvod', $data);
     }
     
      

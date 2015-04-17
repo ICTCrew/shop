@@ -21,9 +21,7 @@ class Test_Controller extends FrontEnd_Controller{
        
         $data=  $this->admin_model->get('proizvod');
         
-        $data=  $this->proizvod_model->getProizvod(1);
         
-        $data=  $this->proizvod_model->getOsobine(1);
         
         $data=  $this->proizvod_model->getProizvodiBrenda(1);
         
@@ -49,6 +47,10 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  $this->korisnik_model->getKorisnik('bilja@bla.com', 'bilja86');
         
         $data=  $this->korisnik_model->getPorudzbine(1);
+        
+        //$data['osobine']=  $this->proizvod_model->prepisiOsobine(1);
+        
+        $data['proizvod']=  $this->proizvod_model->getProizvod(1);
         
         //$data['title']='Home';
         //$data['ulogovan']=false;
