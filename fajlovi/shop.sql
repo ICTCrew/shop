@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2015 at 03:22 PM
+-- Generation Time: Apr 17, 2015 at 11:51 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -58,7 +58,15 @@ CREATE TABLE IF NOT EXISTS `cena` (
   `trenutnaKolicina` double NOT NULL,
   `prodajnaCena` decimal(10,2) NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cena`
+--
+
+INSERT INTO `cena` (`idCena`, `idZapis`, `idProizvod`, `idNabavka`, `nabavnaKolicina`, `nabavnaCena`, `datumCenaOd`, `datumCenaDo`, `trenutnaKolicina`, `prodajnaCena`, `status`) VALUES
+(1, NULL, 1, 1, 5, '5.00', '2015-04-17 21:17:03', NULL, 5, '56.00', 1),
+(2, 1, 1, 1, 45, '45.00', '2015-04-17 21:18:07', NULL, 3, '45.00', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +101,15 @@ CREATE TABLE IF NOT EXISTS `dobavljac` (
   `adresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tekuciRacun` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` mediumint(8) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dobavljac`
+--
+
+INSERT INTO `dobavljac` (`idDobavljac`, `idGrad`, `idTipPlacanja`, `nazivDobavljaca`, `maticniBroj`, `pib`, `telefon`, `adresa`, `tekuciRacun`, `status`) VALUES
+(1, 1, 1, 'dobavljac 1', 8388607, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 00000001),
+(2, 1, 1, 'dobavljac 1', 1231231, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 00000001);
 
 -- --------------------------------------------------------
 
@@ -309,7 +325,14 @@ CREATE TABLE IF NOT EXISTS `nabavka` (
   `cenaKomad` decimal(10,2) NOT NULL,
   `statusPlaceno` tinyint(1) unsigned zerofill NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nabavka`
+--
+
+INSERT INTO `nabavka` (`idNabavka`, `idDobavljac`, `idProizvod`, `kolicina`, `datumNabavke`, `datumDostave`, `cenaKomad`, `statusPlaceno`, `status`) VALUES
+(1, 2, 2, 5, '2015-04-17 21:16:16', NULL, '58.00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -470,8 +493,9 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modelOpis` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `opis` text COLLATE utf8_unicode_ci,
-  `kolicinaVidljivostStatus` tinyint(1) unsigned zerofill NOT NULL,
-  `prikazCenaStatus` tinyint(1) unsigned zerofill NOT NULL,
+  `osobine` text COLLATE utf8_unicode_ci,
+  `statusKolicinaVidljivost` tinyint(1) unsigned zerofill NOT NULL,
+  `statusPrikazCena` tinyint(1) unsigned zerofill NOT NULL,
   `statusPopust` tinyint(1) unsigned zerofill NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `cena` decimal(10,2) NOT NULL
@@ -481,11 +505,11 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
 -- Dumping data for table `proizvod`
 --
 
-INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `kolicinaVidljivostStatus`, `prikazCenaStatus`, `statusPopust`, `status`, `cena`) VALUES
-(1, 1, 1, 1, 1, '2015-04-07 16:26:35', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 1, 1, 1, 1, '300.00'),
-(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', 2, 2, 2, 1, '150.00'),
-(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', 2, 2, 2, 1, '150.00'),
-(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', 2, 2, 2, 1, '150.00');
+INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPrikazCena`, `statusPopust`, `status`, `cena`) VALUES
+(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, 1, '300.00'),
+(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 2, 1, '150.00'),
+(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 2, 1, '150.00'),
+(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 2, 1, '150.00');
 
 -- --------------------------------------------------------
 
@@ -673,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `stranica` (
 CREATE TABLE IF NOT EXISTS `tip_osobina` (
   `idTip` mediumint(8) NOT NULL,
   `idOsobina` mediumint(8) NOT NULL,
-  `default` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `defaultVrednost` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prioritet` mediumint(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -681,7 +705,7 @@ CREATE TABLE IF NOT EXISTS `tip_osobina` (
 -- Dumping data for table `tip_osobina`
 --
 
-INSERT INTO `tip_osobina` (`idTip`, `idOsobina`, `default`, `prioritet`) VALUES
+INSERT INTO `tip_osobina` (`idTip`, `idOsobina`, `defaultVrednost`, `prioritet`) VALUES
 (1, 1, 'proba default vrednost', 1),
 (1, 2, '', 2),
 (1, 3, '', 3),
@@ -866,7 +890,7 @@ ALTER TABLE `conf_shop`
 -- Indexes for table `dobavljac`
 --
 ALTER TABLE `dobavljac`
- ADD PRIMARY KEY (`idDobavljac`), ADD UNIQUE KEY `pib` (`pib`,`tekuciRacun`,`maticniBroj`), ADD KEY `fk_dobavljac_grad1_idx` (`idGrad`);
+ ADD PRIMARY KEY (`idDobavljac`), ADD UNIQUE KEY `pib` (`pib`,`tekuciRacun`,`maticniBroj`), ADD KEY `fk_dobavljac_grad1_idx` (`idGrad`), ADD KEY `fk_dobavljac_placanje` (`idTipPlacanja`);
 
 --
 -- Indexes for table `drzava`
@@ -1085,12 +1109,12 @@ MODIFY `idBrend` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `cena`
 --
 ALTER TABLE `cena`
-MODIFY `idCena` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idCena` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `dobavljac`
 --
 ALTER TABLE `dobavljac`
-MODIFY `idDobavljac` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idDobavljac` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `drzava`
 --
@@ -1135,7 +1159,7 @@ MODIFY `idMeni` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `nabavka`
 --
 ALTER TABLE `nabavka`
-MODIFY `idNabavka` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idNabavka` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `nacin_isporuke`
 --
@@ -1241,6 +1265,7 @@ ADD CONSTRAINT `fk_brend_slika1` FOREIGN KEY (`idSlika`) REFERENCES `slika` (`id
 --
 ALTER TABLE `cena`
 ADD CONSTRAINT `fk_cena_cena1` FOREIGN KEY (`idZapis`) REFERENCES `cena` (`idCena`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_cena_nabavka` FOREIGN KEY (`idNabavka`) REFERENCES `nabavka` (`idNabavka`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_cena_nabavka1` FOREIGN KEY (`idNabavka`) REFERENCES `nabavka` (`idNabavka`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_cena_proizvod1` FOREIGN KEY (`idProizvod`) REFERENCES `proizvod` (`idProizvod`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -1255,7 +1280,8 @@ ADD CONSTRAINT `fk_conf_shop_valuta1` FOREIGN KEY (`idValuta`) REFERENCES `valut
 -- Constraints for table `dobavljac`
 --
 ALTER TABLE `dobavljac`
-ADD CONSTRAINT `fk_dobavljac_grad1` FOREIGN KEY (`idGrad`) REFERENCES `grad` (`idGrad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_dobavljac_grad1` FOREIGN KEY (`idGrad`) REFERENCES `grad` (`idGrad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_dobavljac_placanje` FOREIGN KEY (`idTipPlacanja`) REFERENCES `nacin_kurir_placanje` (`idNacinKurirPlacanje`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `grad`
