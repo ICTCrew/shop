@@ -12,6 +12,14 @@
     0-"obrisan" iz baze
     1-aktivan
 
+-privilegija(meni)
+    0-svi linkovi
+    1-neautorizovan
+    2-autorizovan
+    
+    5-
+
+
 -statusPlaceno(nabavka)
     0-nije placeno
     1-placeno
