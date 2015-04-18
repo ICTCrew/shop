@@ -110,6 +110,16 @@ class Proizvod_model extends CI_Model{
         $query=  $this->db->update('proizvod', $data);
     }
     
+    public function search($search) {
+        $query= $this->db->select('idProizvod, idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->like('modelOpis', $search);
+        $query= $this->db->or_like('opis', $search); 
+        $query= $this->db->or_like('osobine', $search);
+        $query= $this->db->get('proizvod p');
+        return $query->result_array();
+    }
+    
      
     
     

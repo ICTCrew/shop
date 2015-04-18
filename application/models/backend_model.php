@@ -14,13 +14,16 @@ class Backend_model extends CI_Model{
         $this->load->database();
     }
     
-    public function search($search) {
-        $query= $this->db->select('idProizvod, idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
-        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
-        $query= $this->db->like('opis', $search);
-        $query= $this->db->get('proizvod p');
+    public function getOpcije($idUloga) {
+        $query= $this->db->select('nazivOpcija, opisOpcija, linkOpcija');
+        $query= $this->db->join('opcija_uloga ou', 'o.idOpcija=ou.idOpcija');
+        $query= $this->db->join('uloga u', 'u.idUloga=ou.idUloga');
+        $query= $this->db->get('opcija o');
         return $query->result_array();
     }
+    
+    
+    
     
     
 }
