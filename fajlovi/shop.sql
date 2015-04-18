@@ -2,9 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
---
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2015 at 11:51 PM
+-- Generation Time: Apr 18, 2015 at 10:42 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -82,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `conf_shop` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `adresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `pdv` double NOT NULL
+  `pdv` double NOT NULL,
+  `statusPrikazCena` tinyint(1) unsigned zerofill NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -253,6 +253,17 @@ INSERT INTO `korisnik` (`idKorisnik`, `idUloga`, `idGrad`, `aktivacioniKod`, `da
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `korisnik_opcija`
+--
+
+CREATE TABLE IF NOT EXISTS `korisnik_opcija` (
+  `idKorisnik` mediumint(8) NOT NULL,
+  `idOpcija` mediumint(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kurir`
 --
 
@@ -289,6 +300,7 @@ CREATE TABLE IF NOT EXISTS `meni` (
   `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `anchor` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `target` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `privilegija` mediumint(8) NOT NULL DEFAULT '0',
   `statusMeni` tinyint(1) DEFAULT NULL,
   `statusLink` tinyint(1) DEFAULT NULL,
   `prioritetLink` tinyint(4) DEFAULT NULL
@@ -298,17 +310,17 @@ CREATE TABLE IF NOT EXISTS `meni` (
 -- Dumping data for table `meni`
 --
 
-INSERT INTO `meni` (`idMeni`, `idNadMeni`, `nazivMeni`, `url`, `anchor`, `target`, `statusMeni`, `statusLink`, `prioritetLink`) VALUES
-(2, NULL, 'glavni meni', NULL, NULL, NULL, 1, NULL, NULL),
-(3, 2, NULL, 'link1', 'anchor1', 'tar1', NULL, 1, 1),
-(4, 2, NULL, 'link2', 'anch2', 'tar2', NULL, 1, 2),
-(5, NULL, 'footer meni', NULL, NULL, NULL, 1, NULL, NULL),
-(6, 5, 'fMeni1', NULL, NULL, NULL, 1, NULL, NULL),
-(7, 5, 'fMeni2', NULL, NULL, NULL, 1, NULL, NULL),
-(8, 6, NULL, 'fLink1', 'anch1', 'tar1', NULL, 1, 1),
-(9, 6, NULL, 'fLink2', 'anch2', 'tar2', NULL, 1, 2),
-(10, 7, NULL, 'fLink3', 'anch3', 'tar3', NULL, 1, 1),
-(11, 7, NULL, 'fLink4', 'anch4', 'tar4', NULL, 1, 2);
+INSERT INTO `meni` (`idMeni`, `idNadMeni`, `nazivMeni`, `url`, `anchor`, `target`, `privilegija`, `statusMeni`, `statusLink`, `prioritetLink`) VALUES
+(2, NULL, 'glavni meni', NULL, NULL, NULL, 0, 1, NULL, NULL),
+(3, 2, NULL, 'link1', 'anchor1', 'tar1', 0, NULL, 1, 1),
+(4, 2, NULL, 'link2', 'anch2', 'tar2', 0, NULL, 1, 2),
+(5, NULL, 'footer meni', NULL, NULL, NULL, 0, 1, NULL, NULL),
+(6, 5, 'fMeni1', NULL, NULL, NULL, 0, 1, NULL, NULL),
+(7, 5, 'fMeni2', NULL, NULL, NULL, 0, 1, NULL, NULL),
+(8, 6, NULL, 'fLink1', 'anch1', 'tar1', 0, NULL, 1, 1),
+(9, 6, NULL, 'fLink2', 'anch2', 'tar2', 0, NULL, 1, 2),
+(10, 7, NULL, 'fLink3', 'anch3', 'tar3', 0, NULL, 1, 1),
+(11, 7, NULL, 'fLink4', 'anch4', 'tar4', 0, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -393,6 +405,19 @@ CREATE TABLE IF NOT EXISTS `nacin_placanja` (
 INSERT INTO `nacin_placanja` (`idNacinPlacanja`, `nazivPlacanje`, `status`) VALUES
 (1, 'nacin placanja 1', 0),
 (2, 'naziv lacanje 1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `opcija`
+--
+
+CREATE TABLE IF NOT EXISTS `opcija` (
+`idOpcija` mediumint(8) NOT NULL,
+  `nazivOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `opisOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `linkOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -496,7 +521,6 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
   `opis` text COLLATE utf8_unicode_ci,
   `osobine` text COLLATE utf8_unicode_ci,
   `statusKolicinaVidljivost` tinyint(1) unsigned zerofill NOT NULL,
-  `statusPrikazCena` tinyint(1) unsigned zerofill NOT NULL,
   `statusPopust` tinyint(1) unsigned zerofill NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `cena` decimal(10,2) NOT NULL
@@ -506,11 +530,11 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
 -- Dumping data for table `proizvod`
 --
 
-INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPrikazCena`, `statusPopust`, `status`, `cena`) VALUES
-(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, 1, '300.00'),
-(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 2, 1, '150.00'),
-(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 2, 1, '150.00'),
-(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 2, 1, '150.00');
+INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPopust`, `status`, `cena`) VALUES
+(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
+(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 1, '150.00'),
+(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 1, '150.00'),
+(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 1, '150.00');
 
 -- --------------------------------------------------------
 
@@ -966,6 +990,12 @@ ALTER TABLE `nacin_placanja`
  ADD PRIMARY KEY (`idNacinPlacanja`);
 
 --
+-- Indexes for table `opcija`
+--
+ALTER TABLE `opcija`
+ ADD PRIMARY KEY (`idOpcija`);
+
+--
 -- Indexes for table `osobina`
 --
 ALTER TABLE `osobina`
@@ -1176,6 +1206,11 @@ MODIFY `idNacinKurirPlacanje` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMEN
 --
 ALTER TABLE `nacin_placanja`
 MODIFY `idNacinPlacanja` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `opcija`
+--
+ALTER TABLE `opcija`
+MODIFY `idOpcija` mediumint(8) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `osobina`
 --
