@@ -2,9 +2,8 @@
 -- version 4.2.11
 -- http://www.phpmyadmin.net
 --
---
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2015 at 11:51 PM
+-- Generation Time: Apr 19, 2015 at 12:41 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -82,8 +81,16 @@ CREATE TABLE IF NOT EXISTS `conf_shop` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `adresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `pdv` double NOT NULL
+  `pdv` double NOT NULL,
+  `statusPrikazCena` tinyint(1) unsigned zerofill NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `conf_shop`
+--
+
+INSERT INTO `conf_shop` (`idGrad`, `idValuta`, `nazivProdavnica`, `email`, `adresa`, `telefon`, `pdv`, `statusPrikazCena`) VALUES
+(1, 2, 'Shop Prodavnica', 'bla@gmail.com', 'adresa 1', '123/123123-123', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -163,6 +170,7 @@ CREATE TABLE IF NOT EXISTS `grupa` (
   `nazivGrupa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `idSlika` mediumint(8) NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -170,9 +178,9 @@ CREATE TABLE IF NOT EXISTS `grupa` (
 -- Dumping data for table `grupa`
 --
 
-INSERT INTO `grupa` (`idGrupa`, `nazivGrupa`, `title`, `description`, `status`) VALUES
-(1, 'grupa1', 'grp1 title', 'grp2 desc', 1),
-(2, 'grupa1', 'title grupa1', 'desc grupa1', 1);
+INSERT INTO `grupa` (`idGrupa`, `nazivGrupa`, `title`, `description`, `idSlika`, `status`) VALUES
+(1, 'grupa1', 'grp1 title', 'grp2 desc', 1, 1),
+(2, 'grupa1', 'title grupa1', 'desc grupa1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -289,8 +297,8 @@ CREATE TABLE IF NOT EXISTS `meni` (
   `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `anchor` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `target` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `statusMeni` tinyint(1) DEFAULT NULL,
-  `statusLink` tinyint(1) DEFAULT NULL,
+  `privilegija` mediumint(8) NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT '1',
   `prioritetLink` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -298,17 +306,17 @@ CREATE TABLE IF NOT EXISTS `meni` (
 -- Dumping data for table `meni`
 --
 
-INSERT INTO `meni` (`idMeni`, `idNadMeni`, `nazivMeni`, `url`, `anchor`, `target`, `statusMeni`, `statusLink`, `prioritetLink`) VALUES
-(2, NULL, 'glavni meni', NULL, NULL, NULL, 1, NULL, NULL),
-(3, 2, NULL, 'link1', 'anchor1', 'tar1', NULL, 1, 1),
-(4, 2, NULL, 'link2', 'anch2', 'tar2', NULL, 1, 2),
-(5, NULL, 'footer meni', NULL, NULL, NULL, 1, NULL, NULL),
-(6, 5, 'fMeni1', NULL, NULL, NULL, 1, NULL, NULL),
-(7, 5, 'fMeni2', NULL, NULL, NULL, 1, NULL, NULL),
-(8, 6, NULL, 'fLink1', 'anch1', 'tar1', NULL, 1, 1),
-(9, 6, NULL, 'fLink2', 'anch2', 'tar2', NULL, 1, 2),
-(10, 7, NULL, 'fLink3', 'anch3', 'tar3', NULL, 1, 1),
-(11, 7, NULL, 'fLink4', 'anch4', 'tar4', NULL, 1, 2);
+INSERT INTO `meni` (`idMeni`, `idNadMeni`, `nazivMeni`, `url`, `anchor`, `target`, `privilegija`, `status`, `prioritetLink`) VALUES
+(2, NULL, 'glavni meni', NULL, NULL, NULL, 0, 1, NULL),
+(3, 2, NULL, 'link1', 'anchor1', 'tar1', 0, 1, 1),
+(4, 2, NULL, 'link2', 'anch2', 'tar2', 0, 1, 2),
+(5, NULL, 'footer meni', NULL, NULL, NULL, 0, 1, NULL),
+(6, 5, 'fMeni1', NULL, NULL, NULL, 0, 1, NULL),
+(7, 5, 'fMeni2', NULL, NULL, NULL, 0, 1, NULL),
+(8, 6, NULL, 'fLink1', 'anch1', 'tar1', 0, 1, 1),
+(9, 6, NULL, 'fLink2', 'anch2', 'tar2', 0, 1, 2),
+(10, 7, NULL, 'fLink3', 'anch3', 'tar3', 0, 1, 1),
+(11, 7, NULL, 'fLink4', 'anch4', 'tar4', 0, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -393,6 +401,46 @@ CREATE TABLE IF NOT EXISTS `nacin_placanja` (
 INSERT INTO `nacin_placanja` (`idNacinPlacanja`, `nazivPlacanje`, `status`) VALUES
 (1, 'nacin placanja 1', 0),
 (2, 'naziv lacanje 1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `opcija`
+--
+
+CREATE TABLE IF NOT EXISTS `opcija` (
+`idOpcija` mediumint(8) NOT NULL,
+  `nazivOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `opisOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `linkOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `opcija`
+--
+
+INSERT INTO `opcija` (`idOpcija`, `nazivOpcija`, `opisOpcija`, `linkOpcija`) VALUES
+(1, 'opcija1', 'opis opc 1', 'link opc 1'),
+(2, 'pocija 2', 'opis opc 2', 'link opc 2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `opcija_uloga`
+--
+
+CREATE TABLE IF NOT EXISTS `opcija_uloga` (
+  `idUloga` mediumint(8) NOT NULL,
+  `idOpcija` mediumint(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `opcija_uloga`
+--
+
+INSERT INTO `opcija_uloga` (`idUloga`, `idOpcija`) VALUES
+(1, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -496,7 +544,6 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
   `opis` text COLLATE utf8_unicode_ci,
   `osobine` text COLLATE utf8_unicode_ci,
   `statusKolicinaVidljivost` tinyint(1) unsigned zerofill NOT NULL,
-  `statusPrikazCena` tinyint(1) unsigned zerofill NOT NULL,
   `statusPopust` tinyint(1) unsigned zerofill NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `cena` decimal(10,2) NOT NULL
@@ -506,11 +553,11 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
 -- Dumping data for table `proizvod`
 --
 
-INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPrikazCena`, `statusPopust`, `status`, `cena`) VALUES
-(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, 1, '300.00'),
-(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 2, 1, '150.00'),
-(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 2, 1, '150.00'),
-(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 2, 1, '150.00');
+INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPopust`, `status`, `cena`) VALUES
+(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
+(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 1, '150.00'),
+(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 1, '150.00'),
+(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 1, '150.00');
 
 -- --------------------------------------------------------
 
@@ -687,7 +734,14 @@ CREATE TABLE IF NOT EXISTS `stranica` (
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sadrzaj` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `stranica`
+--
+
+INSERT INTO `stranica` (`idStranica`, `nazivStranica`, `title`, `description`, `keywords`, `url`, `sadrzaj`, `status`) VALUES
+(1, 'naziv stranica', 'title stranica', 'desc stranica', 'key sstranica', 'url stranica', 'teasdasd asfkj ;lfkja sdklfj ;asdkfj asdklfj a;sdklfj ;adf', 1);
 
 -- --------------------------------------------------------
 
@@ -812,7 +866,15 @@ CREATE TABLE IF NOT EXISTS `valuta` (
   `nazivValuta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `skracenicaValuta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `valuta`
+--
+
+INSERT INTO `valuta` (`idValuta`, `idDrzava`, `nazivValuta`, `skracenicaValuta`, `status`) VALUES
+(1, 1, 'Dinar', 'RSD', 0),
+(2, 1, 'Dinar', 'RSD', 1);
 
 -- --------------------------------------------------------
 
@@ -909,7 +971,7 @@ ALTER TABLE `grad`
 -- Indexes for table `grupa`
 --
 ALTER TABLE `grupa`
- ADD PRIMARY KEY (`idGrupa`);
+ ADD PRIMARY KEY (`idGrupa`), ADD KEY `fk_grupa_slika` (`idSlika`);
 
 --
 -- Indexes for table `kategorija`
@@ -964,6 +1026,18 @@ ALTER TABLE `nacin_kurir_placanje`
 --
 ALTER TABLE `nacin_placanja`
  ADD PRIMARY KEY (`idNacinPlacanja`);
+
+--
+-- Indexes for table `opcija`
+--
+ALTER TABLE `opcija`
+ ADD PRIMARY KEY (`idOpcija`);
+
+--
+-- Indexes for table `opcija_uloga`
+--
+ALTER TABLE `opcija_uloga`
+ ADD KEY `fk_opcija_uloga_uloga` (`idUloga`), ADD KEY `fk_opcija_uloga_opcija` (`idOpcija`);
 
 --
 -- Indexes for table `osobina`
@@ -1177,6 +1251,11 @@ MODIFY `idNacinKurirPlacanje` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMEN
 ALTER TABLE `nacin_placanja`
 MODIFY `idNacinPlacanja` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `opcija`
+--
+ALTER TABLE `opcija`
+MODIFY `idOpcija` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `osobina`
 --
 ALTER TABLE `osobina`
@@ -1220,7 +1299,7 @@ MODIFY `idSlika` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `stranica`
 --
 ALTER TABLE `stranica`
-MODIFY `idStranica` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idStranica` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tip_popust`
 --
@@ -1245,7 +1324,7 @@ MODIFY `idUloga` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `valuta`
 --
 ALTER TABLE `valuta`
-MODIFY `idValuta` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idValuta` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `vrednost`
 --
@@ -1289,6 +1368,12 @@ ADD CONSTRAINT `fk_dobavljac_placanje` FOREIGN KEY (`idTipPlacanja`) REFERENCES 
 --
 ALTER TABLE `grad`
 ADD CONSTRAINT `fk_grad_drzava1` FOREIGN KEY (`idDrzava`) REFERENCES `drzava` (`idDrzava`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `grupa`
+--
+ALTER TABLE `grupa`
+ADD CONSTRAINT `fk_grupa_slika` FOREIGN KEY (`idSlika`) REFERENCES `slika` (`idSlika`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `kategorija`
@@ -1336,6 +1421,13 @@ ADD CONSTRAINT `fk_nabavka_proizvod1` FOREIGN KEY (`idProizvod`) REFERENCES `pro
 --
 ALTER TABLE `nacin_isporuke`
 ADD CONSTRAINT `fk_nacinIsporuke_kurir` FOREIGN KEY (`idKurir`) REFERENCES `kurir` (`idKurir`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `opcija_uloga`
+--
+ALTER TABLE `opcija_uloga`
+ADD CONSTRAINT `fk_opcija_uloga_opcija` FOREIGN KEY (`idOpcija`) REFERENCES `opcija` (`idOpcija`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_opcija_uloga_uloga` FOREIGN KEY (`idUloga`) REFERENCES `uloga` (`idUloga`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `popust`
