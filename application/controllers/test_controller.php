@@ -30,9 +30,7 @@ class Test_Controller extends FrontEnd_Controller{
         $data1=array('idProizvod', 'modelOpis', 'opis');
         $data=  $this->proizvod_model->getKolone('proizvod', $data1, 2,1);
         
-        $data=  $this->frontend_model->getSlajder(1);
         
-        $data=  $this->frontend_model->getMeni();
         
         $data=  $this->frontend_model->getKategorija();
         
@@ -42,7 +40,7 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  serialize($niz);
         $data=  unserialize($data);
         
-        $data=  $this->backend_model->search("pretraga");
+        
         
         $data=  $this->korisnik_model->getKorisnik('bilja@bla.com', 'bilja86');
         
@@ -52,10 +50,25 @@ class Test_Controller extends FrontEnd_Controller{
         
         $data['proizvod']=  $this->proizvod_model->getProizvod(1);
         
+        $data=  $this->frontend_model->getGrupa();
+        
+        $data=  $this->frontend_model->getBrend();
+        
+        $data=  $this->frontend_model->getStranica('url stranica');
+        
+        $data=  $this->frontend_model->conf_shop();
+        
+        $data=  $this->frontend_model->getSlajder();
+        
+        $data=  $this->frontend_model->getMeni();
+        
+        $data=  $this->backend_model->getOpcije(1);
+        
+        $data=  $this->proizvod_model->search("opis2");
         //$data['title']='Home';
         //$data['ulogovan']=false;
         
-        $this->load_view($data);
+        $this->load_view_test($data);
     }
     
     
