@@ -36,7 +36,7 @@
     0-ne prikazuj kada nema na lageru
     1-prikazi sa porukom da trenutno nema na lageru
 
--statusPrikazCena(proizvod)
+-statusPrikazCena(conf_shop)
     0-prikaz bez PDV-a
     1-prikaz sa PDV-om
     2-prikaz obe cene

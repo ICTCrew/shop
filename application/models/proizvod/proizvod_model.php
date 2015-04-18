@@ -26,7 +26,7 @@ class Proizvod_model extends CI_Model{
      * @return type - asoc niz grupa proizvoda
      */
     public function getProizvodiKategorije($idKategorija, $limit=0, $offset=0) {
-        $query= $this->db->select('idProizvod, modelOpis, opis, prikazCenaStatus, statusPopust, cena, s.url,');
+        $query= $this->db->select('idProizvod, modelOpis, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idKategorija', $idKategorija);
         $query= $this->db->get('proizvod p', $limit, $offset);
@@ -34,7 +34,7 @@ class Proizvod_model extends CI_Model{
     }
     
     public function getProizvodiBrenda($idBrend, $limit=0, $offset=0) {
-        $query= $this->db->select('idProizvod, modelOpis, opis, prikazCenaStatus, statusPopust, cena, s.url,');
+        $query= $this->db->select('idProizvod, modelOpis, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idBrend', $idBrend);
         $query= $this->db->get('proizvod p', $limit, $offset);
@@ -48,7 +48,7 @@ class Proizvod_model extends CI_Model{
     
     //na prosledjen idProizvoda vraca ostale podatke
     public function getProizvod($idProizvod) {
-        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, osobine, prikazCenaStatus, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
+        $query= $this->db->select('idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, osobine, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idProizvod', $idProizvod);
         $query= $this->db->get('proizvod p');
