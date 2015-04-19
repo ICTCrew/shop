@@ -26,8 +26,7 @@ class frontend_controller extends MY_Controller {
         echo '<br>';
         echo "<a href='http://localhost/shop/index.php/test_controller'>http://localhost/shop/index.php/test_controller</a>";
         echo '<br><br><br><br><br>';
-        
-        //$this->load->view('test_view', $data);
-        print_r($data);
+        $data1['sve']=$data;
+        $this->load->view('test_view', $data1);
     }
 }
