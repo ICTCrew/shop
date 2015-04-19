@@ -26,17 +26,30 @@ class Proizvod_model extends CI_Model{
      * @return type - asoc niz grupa proizvoda
      */
     public function getProizvodiKategorije($idKategorija, $limit=0, $offset=0) {
-        $query= $this->db->select('idProizvod, modelOpis, opis, statusPopust, cena, s.url,');
+        $query= $this->db->select('idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idKategorija', $idKategorija);
+        $query= $this->db->where('p.status', 1);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
     }
     
     public function getProizvodiBrenda($idBrend, $limit=0, $offset=0) {
-        $query= $this->db->select('idProizvod, modelOpis, opis, statusPopust, cena, s.url,');
+        $query= $this->db->select('idProizvod, modelOpis, osobine,  opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idBrend', $idBrend);
+        $query= $this->db->where('p.status', 1);
+        $query= $this->db->get('proizvod p', $limit, $offset);
+        return $query->result_array();
+    }
+    
+    public function getProizvodiGrupe($idGrupa, $limit=0, $offset=0) {
+        $query= $this->db->select('p.idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->join('proizvod_grupa pg', 'pg.idProizvod = p.idProizvod');
+        $query= $this->db->join('grupa g', 'g.idGrupa = pg.idGrupa');
+        $query= $this->db->where('g.idGrupa', $idGrupa);
+        $query= $this->db->where('p.status', 1);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
     }
@@ -55,20 +68,8 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
-    /**
-     * vraca osobine za zadati idProizvoda
-     * @param type $idProizvod
-     * @return type assoc. array indeksi - 'nazivosobina', 'jedinica', 'nazivVrednost'
-     */
-    public function getOsobine($idProizvod) {
-        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
-        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
-        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
-        $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->where('vpo.status', 1);
-        $query= $this->db->get('osobina o');
-        return $query->result_array();
-    }
+    
+    
 
     
     
@@ -93,23 +94,12 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
-    public function prepisiOsobine($idProizvod) {
-        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
-        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
-        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
-        $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->where('vpo.status', 1);
-        $query= $this->db->get('osobina o');
-        $osobine= $query->result_array();
-        $string="";
-        foreach ($osobine as $osobina) {
-            $string.=$osobina['nazivOsobina']."|".$osobina['nazivVrednost']."|".$osobina['jedinica']."*";
-        }
-        $data=array('osobine'=>$string);
-        $query=  $this->db->where('idProizvod', $idProizvod);
-        $query=  $this->db->update('proizvod', $data);
-    }
     
+    /**     SEARCH po zadatom stringu za kolone 'modelOpis', 'opis', 'osobine' iz tebele proizvod
+     * 
+     * @param type $search
+     * @return type asoc array proizvoda
+     */
     public function search($search) {
         $query= $this->db->select('idProizvod, idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
@@ -120,6 +110,25 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
+    public function getPovezaniProizvodi($idProizvod /*, $limit=0, $offset=0*/) {
+        $query= $this->db->select('p.idProizvod, p.modelOpis, p.osobine, p.opis, p.statusPopust, p.cena, s.url,');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->join('proizvod_relacija pr', 'pr.idSlicanProizvod = p.idProizvod');
+        $query= $this->db->join('tip_relacija tr', 'tr.idTipRelacija = pr.idTipRelacija');
+        $query= $this->db->where('pr.idProizvod', $idProizvod);
+        $query= $this->db->where('pr.status', 1);
+        $query= $this->db->get('proizvod p'/*, $limit, $offset*/);
+        return $query->result_array();
+    }
+    
+    public function getKomentar($idProizvod) {
+        $query= $this->db->select('idKomentar, datum, sadrzaj, ime, prezime, email');
+        $query= $this->db->join('korisnik k', 'k.idKorisnik = kom.idKorisnik');
+        $query= $this->db->where('kom.idProizvod', $idProizvod);
+        $query= $this->db->where('kom.status', 1);
+        $query= $this->db->get('komentar kom');
+        return $query->result_array();
+    }
      
     
     
