@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2015 at 12:41 AM
+-- Generation Time: Apr 19, 2015 at 11:05 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -219,14 +219,16 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `sadrzaj` longtext COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `komentar`
 --
 
 INSERT INTO `komentar` (`idKomentar`, `idKorisnik`, `idProizvod`, `datum`, `sadrzaj`, `status`) VALUES
-(1, 1, 1, '2015-04-10 14:11:47', 'tekst komentara', 1);
+(1, 1, 1, '2015-04-10 14:11:47', 'tekst komentara', 1),
+(2, 1, 1, '2015-04-19 08:56:51', 'komentar 2', 1),
+(3, 1, 4, '2015-04-19 08:56:51', 'komentar 5656', 1);
 
 -- --------------------------------------------------------
 
@@ -256,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 --
 
 INSERT INTO `korisnik` (`idKorisnik`, `idUloga`, `idGrad`, `aktivacioniKod`, `datumKreiranja`, `datumRodjenja`, `ime`, `prezime`, `adresa`, `telefon`, `email`, `status`, `password`, `datumPosLog`) VALUES
-(1, 1, 1, '123123123123', '2015-04-10 14:07:20', '2014-04-16 22:00:00', 'Biljana', 'Domcic', 'lestane 2', 'fiksni', 'bilja@bla.com', 1, 'e36f9b10672fab98f504ac6438368edf', '2015-04-17 12:15:28');
+(1, 1, 1, '123123123123', '2015-04-10 14:07:20', '2014-04-16 22:00:00', 'Biljana', 'Domcic', 'lestane 2', 'fiksni', 'bilja@bla.com', 2, 'e36f9b10672fab98f504ac6438368edf', '2015-04-19 07:38:02');
 
 -- --------------------------------------------------------
 
@@ -554,7 +556,7 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
 --
 
 INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPopust`, `status`, `cena`) VALUES
-(1, 1, 1, 1, 1, '2015-04-17 20:22:53', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
+(1, 1, 1, 1, 1, '2015-04-19 08:00:09', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
 (2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 1, '150.00'),
 (4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 1, '150.00'),
 (5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 1, '150.00');
@@ -635,7 +637,9 @@ CREATE TABLE IF NOT EXISTS `proizvod_relacija` (
 --
 
 INSERT INTO `proizvod_relacija` (`idProizvod`, `idTipRelacija`, `idSlicanProizvod`, `status`) VALUES
-(1, 1, 1, 1);
+(1, 1, 4, 1),
+(1, 1, 5, 1),
+(1, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1091,7 +1095,7 @@ ALTER TABLE `proizvod_porudzbina`
 -- Indexes for table `proizvod_relacija`
 --
 ALTER TABLE `proizvod_relacija`
- ADD PRIMARY KEY (`idProizvod`,`idTipRelacija`,`idSlicanProizvod`), ADD KEY `fk_proizvod_relacija_proizvod1_idx` (`idProizvod`), ADD KEY `fk_proizvod_relacija_proizvod_relacija1` (`idSlicanProizvod`), ADD KEY `fk_proizvod_relacija_tip_relacija1` (`idTipRelacija`);
+ ADD PRIMARY KEY (`idProizvod`,`idTipRelacija`,`idSlicanProizvod`), ADD KEY `fk_proizvod_relacija_proizvod1_idx` (`idProizvod`), ADD KEY `fk_proizvod_relacija_tip_relacija1` (`idTipRelacija`), ADD KEY `fk_proizvod_relacija_proizvod_relacija1` (`idSlicanProizvod`);
 
 --
 -- Indexes for table `slajder`
@@ -1214,7 +1218,7 @@ MODIFY `idKategorija` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-MODIFY `idKomentar` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idKomentar` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `korisnik`
 --
@@ -1478,7 +1482,7 @@ ADD CONSTRAINT `fk_proizvod_porudzbina_proizvod1` FOREIGN KEY (`idProizvod`) REF
 --
 ALTER TABLE `proizvod_relacija`
 ADD CONSTRAINT `fk_proizvod_relacija_proizvod1` FOREIGN KEY (`idProizvod`) REFERENCES `proizvod` (`idProizvod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_proizvod_relacija_proizvod_relacija1` FOREIGN KEY (`idSlicanProizvod`) REFERENCES `proizvod_relacija` (`idProizvod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_proizvod_relacija_proizvod_relacija1` FOREIGN KEY (`idSlicanProizvod`) REFERENCES `proizvod` (`idProizvod`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_proizvod_relacija_tip_relacija1` FOREIGN KEY (`idTipRelacija`) REFERENCES `tip_relacija` (`idTipRelacija`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
