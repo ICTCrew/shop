@@ -26,7 +26,7 @@ class Test_Controller extends FrontEnd_Controller{
         
         $data=  $this->proizvod_model->getProizvodiBrenda(1);
         
-        $data=  $this->proizvod_model->getProizvodiKategorije(1);
+        
         
         $data1=array('idProizvod', 'modelOpis', 'opis');
         $data=  $this->proizvod_model->getKolone('proizvod', $data1, 2,1);
@@ -76,6 +76,8 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  $this->proizvod_model->getPovezaniProizvodi(1);
         
         $data=  $this->proizvod_model->getKomentar(1);
+        
+        $data=  $this->proizvod_model->getProizvodiKategorije(1, 'modelOpis', 'desc');
         //$data['title']='Home';
         //$data['ulogovan']=false;
         
