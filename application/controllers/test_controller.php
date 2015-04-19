@@ -15,6 +15,7 @@ class Test_Controller extends FrontEnd_Controller{
         $this->load->model('backend_model');
         $this->load->model('korisnik_model');
         $this->load->model('login_model');
+        $this->load->model('admin/catalogue_model');
         
     }
     
@@ -23,9 +24,7 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  $this->admin_model->get('proizvod');
         
         
-        
         $data=  $this->proizvod_model->getProizvodiBrenda(1);
-        
         
         
         $data1=array('idProizvod', 'modelOpis', 'opis');
@@ -47,7 +46,7 @@ class Test_Controller extends FrontEnd_Controller{
         
         $data=  $this->korisnik_model->getPorudzbine(1);
         
-        //$data['osobine']=  $this->proizvod_model->prepisiOsobine(1);
+        $data['osobine']=  $this->admin_model->prepisiOsobine(1);
         
         $data['proizvod']=  $this->proizvod_model->getProizvod(1);
         
@@ -75,9 +74,13 @@ class Test_Controller extends FrontEnd_Controller{
         
         $data=  $this->proizvod_model->getPovezaniProizvodi(1);
         
-        $data=  $this->proizvod_model->getKomentar(1);
-        
         $data=  $this->proizvod_model->getProizvodiKategorije(1, 'modelOpis', 'desc');
+        
+        $data=  $this->proizvod_model->getKomentari(1);
+        
+        $data=  $this->catalogue_model->getKategorije();
+        
+        $data=  $this->catalogue_model->getBrend();
         //$data['title']='Home';
         //$data['ulogovan']=false;
         

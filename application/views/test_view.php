@@ -1,5 +1,8 @@
 <?php
-//print_r($proizvod);
+
+print_r($sve);
+
+
 /*echo $proizvod[0]['Ptitle']."<br>";
 echo $proizvod[0]['modelOpis']."<br>";
 echo $proizvod[0]['osobine']."<br>";
