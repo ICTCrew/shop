@@ -10,10 +10,11 @@ class Test_Controller extends FrontEnd_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('admin/admin_model');
-        $this->load->model('proizvod/proizvod_model');
+        $this->load->model('proizvod_model');
         $this->load->model('frontend_model');
         $this->load->model('backend_model');
         $this->load->model('korisnik_model');
+        $this->load->model('login_model');
         
     }
     
@@ -65,6 +66,16 @@ class Test_Controller extends FrontEnd_Controller{
         $data=  $this->backend_model->getOpcije(1);
         
         $data=  $this->proizvod_model->search("opis2");
+        
+        $data=  $this->login_model->getKorisnik('bilja@bla.com', 'bilja86');
+        
+        $data=  $this->login_model->activateUser('123123123123');
+        
+        $data=  $this->proizvod_model->getProizvodiGrupe(1);
+        
+        $data=  $this->proizvod_model->getPovezaniProizvodi(1);
+        
+        $data=  $this->proizvod_model->getKomentar(1);
         //$data['title']='Home';
         //$data['ulogovan']=false;
         
