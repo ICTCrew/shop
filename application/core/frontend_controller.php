@@ -5,12 +5,11 @@
  *
  * @author Matic
  */
-class FrontEnd_Controller extends MY_Controller {
-    
+class frontend_controller extends MY_Controller {
+    private $role;
     function __construct(){
-        
         parent::__construct();
-        
+        if($this->session->userdata('role')?$this->role = $this->session->userdata('role'):$this->role = null);
         $this->load->model('frontend_model');
     }
     
@@ -30,6 +29,5 @@ class FrontEnd_Controller extends MY_Controller {
         
         //$this->load->view('test_view', $data);
         print_r($data);
-        
     }
 }
