@@ -195,9 +195,7 @@ class admin_model extends CI_Model{
      *                                    vrednosti=zapisi za insert
      * 
      */
-    public function insertBrend($uneseno){
-        $this->db->insert('brend',$uneseno);
-    }
+    
     
     public function insertCena($uneseno){
         $this->db->insert('cena',$uneseno);
@@ -223,9 +221,7 @@ class admin_model extends CI_Model{
         $this->db->insert('grupa',$uneseno);
     }
     
-    public function insertKategorija($uneseno){
-        $this->db->insert('kategorija',$uneseno);
-    }
+    
     
     public function insertKomentar($uneseno){
         $this->db->insert('komentar',$uneseno);
