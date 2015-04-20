@@ -9,11 +9,9 @@ class frontend_controller extends MY_Controller {
     private $role;
     function __construct(){
         parent::__construct();
-        if($this->session->userdata('role')?$this->role = $this->session->userdata('role'):$this->role = null);
+        $this->session->userdata('role')?$this->role = $this->session->userdata('role'):$this->role = null;
         $this->load->model('frontend_model');
     }
-    
-    
     
     public function load_view_test($data) {
         /*
@@ -28,5 +26,9 @@ class frontend_controller extends MY_Controller {
         echo '<br><br><br><br><br>';
         $data1['sve']=$data;
         $this->load->view('test_view', $data1);
+    }
+    
+    public function loadView() {
+        
     }
 }
