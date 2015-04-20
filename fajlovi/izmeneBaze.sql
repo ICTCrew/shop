@@ -6,4 +6,7 @@
 
 
 --Dodavanje statusa u proizvod_grupa (1)
-ALTER TABLE `proizvod_grupa` ADD `status` TINYINT(1) NOT NULL AFTER `status`;
+ALTER TABLE `proizvod_grupa` ADD `status` TINYINT(1) NOT NULL AFTER `idGrupa`;
+
+--Dodavanje statusa u vrednost (2)
+ALTER TABLE `vrednost` ADD `status` TINYINT(1) NOT NULL AFTER `nazivVrednost`;
