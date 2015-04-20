@@ -20,7 +20,7 @@ class Test_Controller extends CI_Controller{
     }
     
     public function index() {
-       
+       /*
         $data['sve']=  $this->admin_model->get('proizvod');
         
         
@@ -46,7 +46,7 @@ class Test_Controller extends CI_Controller{
         
         $data['sve']=  $this->korisnik_model->getPorudzbine(1);
         
-        $data['osobine']=  $this->admin_model->prepisiOsobine(1);
+        $data['osobine']=  $this->catalogue_model->prepisiOsobine(1);
         
         $data['proizvod']=  $this->proizvod_model->getProizvod(1);
         
@@ -80,8 +80,13 @@ class Test_Controller extends CI_Controller{
         
         $data['sve']=  $this->catalogue_model->getKategorije();
         
-        $data['sve']=  $this->catalogue_model->getBrend();
+        $data['sve']=  $this->catalogue_model->getBrendovi();
         
+        $data['sve']=  $this->catalogue_model->getProizvod(1);
+        
+        $data['sve']=  $this->catalogue_model->getProizvodiT(array('nazivId'=>'k.idKategorija', 'vrednostId'=>1), 'kategorija', 0, 0, 'modelOpis', 'asc');
+        */
+        $data['sve']=  $this->catalogue_model->getPovezaniProizvodi();
         //$data['title']='Home';
         //$data['ulogovan']=false;
         

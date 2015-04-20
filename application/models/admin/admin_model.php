@@ -30,15 +30,7 @@ class admin_model extends CI_Model{
      * @param type $uneseno - asoc. niz - indeksi=nazivi kolona, vrednosti=zapisi za insert
      * @return type int - id unetog zapisa
      */
-    public function idInsertBrend($uneseno){
-        $this->db->insert('brend',$uneseno);
-        return $this->db->insert_id();  
-    }
     
-    public function idInsertCena($uneseno){
-        $this->db->insert('cena',$uneseno);
-        return $this->db->insert_id();  
-    }
     
     public function idInsertDobavljac($uneseno){
         $this->db->insert('dobavljac',$uneseno);
@@ -55,21 +47,7 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
-    public function idInsertGrupa($uneseno){
-        $this->db->insert('grupa',$uneseno);
-        return $this->db->insert_id();  
-    }
-    
-    public function idInsertKategorija($uneseno){
-        $this->db->insert('kategorija',$uneseno);
-        return $this->db->insert_id();  
-    }
-    
-    public function idInsertKomentar($uneseno){
-        $this->db->insert('komentar',$uneseno);
-        return $this->db->insert_id();  
-    }
-    
+   
     public function idInsertKorisnik($uneseno){
         $this->db->insert('korisnik',$uneseno);
         return $this->db->insert_id();  
@@ -105,10 +83,6 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
-    public function idInsertOsobina($uneseno){
-        $this->db->insert('osobina',$uneseno);
-        return $this->db->insert_id();  
-    }
     
     public function idInsertPopust($uneseno){
         $this->db->insert('popust',$uneseno);
@@ -125,10 +99,6 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
-    public function idInsertProizvod($uneseno){
-        $this->db->insert('proizvod',$uneseno);
-        return $this->db->insert_id();  
-    }
     
     public function idInsertSlajder($uneseno){
         $this->db->insert('slajder',$uneseno);
@@ -140,10 +110,6 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
-    public function idInsertSlika($uneseno){
-        $this->db->insert('slika',$uneseno);
-        return $this->db->insert_id();  
-    }
     
     public function idInsertStranica($uneseno){
         $this->db->insert('stranica',$uneseno);
@@ -152,16 +118,6 @@ class admin_model extends CI_Model{
     
     public function idInsertTipPopust($uneseno){
         $this->db->insert('tip_popust',$uneseno);
-        return $this->db->insert_id();  
-    }
-    
-    public function idInsertTipProizvoda($uneseno){
-        $this->db->insert('tip_proizvoda',$uneseno);
-        return $this->db->insert_id();  
-    }
-    
-    public function idInsertTipRelacija($uneseno){
-        $this->db->insert('tip_relacija',$uneseno);
         return $this->db->insert_id();  
     }
     
@@ -175,10 +131,6 @@ class admin_model extends CI_Model{
         return $this->db->insert_id();  
     }
     
-    public function idInsertVrednost($uneseno){
-        $this->db->insert('vrednost',$uneseno);
-        return $this->db->insert_id();  
-    }
     /**
      * 
      * kraj "idInsert" funkcija
@@ -197,10 +149,6 @@ class admin_model extends CI_Model{
      */
     
     
-    public function insertCena($uneseno){
-        $this->db->insert('cena',$uneseno);
-    }
-    
     public function insertConfShop($uneseno){
         $this->db->insert('conf_shop',$uneseno);
     }
@@ -215,16 +163,6 @@ class admin_model extends CI_Model{
 
     public function insertGrad($uneseno){
         $this->db->insert('grad',$uneseno);
-    }
-    
-    public function insertGrupa($uneseno){
-        $this->db->insert('grupa',$uneseno);
-    }
-    
-    
-    
-    public function insertKomentar($uneseno){
-        $this->db->insert('komentar',$uneseno);
     }
     
     public function insertKorisnik($uneseno){
@@ -255,9 +193,6 @@ class admin_model extends CI_Model{
         $this->db->insert('nacin_placanja',$uneseno);
     }
     
-    public function insertOsobina($uneseno){
-        $this->db->insert('osobina',$uneseno);
-    }
     
     public function insertPopust($uneseno){
         $this->db->insert('popust',$uneseno);
@@ -271,24 +206,8 @@ class admin_model extends CI_Model{
         $this->db->insert('pretplata',$uneseno);  
     }
     
-    public function insertProizvod($uneseno){
-        $this->db->insert('proizvod',$uneseno);
-    }
-    
-    public function insertProizvodGrupa($uneseno){
-        $this->db->insert('proizvod_grupa',$uneseno);
-    }
-    
-    public function insertProizvodPopust($uneseno){
-        $this->db->insert('proizvod_popust',$uneseno);
-    }
-    
     public function insertProizvodPorudzbina($uneseno){
         $this->db->insert('proizvod_porudzbina',$uneseno);
-    }
-    
-    public function insertProizvodRelacija($uneseno){
-        $this->db->insert('proizvod_relacija',$uneseno);
     }
     
     public function insertSlajder($uneseno){
@@ -303,29 +222,15 @@ class admin_model extends CI_Model{
         $this->db->insert('slajder_slika_veza',$uneseno);
     }
     
-    public function insertSlika($uneseno){
-        $this->db->insert('slika',$uneseno);
-    }
-    
     public function insertStranica($uneseno){
         $this->db->insert('stranica',$uneseno);
     }
     
-    public function insertTipOsobina($uneseno){
-        $this->db->insert('tip_osobina',$uneseno);
-    }
     
     public function insertTipPopust($uneseno){
         $this->db->insert('tip_popust',$uneseno);
     }
     
-    public function insertTipProizvoda($uneseno){
-        $this->db->insert('tip_proizvoda',$uneseno);
-    }
-    
-    public function insertTipRelacija($uneseno){
-        $this->db->insert('tip_relacija',$uneseno);
-    }
     
     public function insertUloga($uneseno){
         $this->db->insert('uloga',$uneseno);
@@ -335,13 +240,7 @@ class admin_model extends CI_Model{
         $this->db->insert('valuta',$uneseno); 
     }
     
-    public function insertVrednost($uneseno){
-        $this->db->insert('vrednost',$uneseno);
-    }
     
-    public function insertVrednostProizvodOsobina($uneseno){
-        $this->db->insert('vrednost_proizvod_osobina',$uneseno);
-    }
     /**
      * 
      * kraj "insert" funkcija
@@ -349,42 +248,5 @@ class admin_model extends CI_Model{
      */
    
     /////////////////////////////////////////////////////////////////////////////////////
-    
-    /**
-     * vraca osobine za zadati idProizvoda
-     * @param type $idProizvod
-     * @return type assoc. array indeksi - 'nazivosobina', 'jedinica', 'nazivVrednost'
-     */
-    public function getOsobine($idProizvod) {
-        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
-        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
-        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
-        $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->where('vpo.status', 1);
-        $query= $this->db->get('osobina o');
-        return $query->result_array();
-    }
-    
-    
-    /**         citanje i "prepisivanje" osobina proizvoda u string u tabelu proizvod
-     * 
-     * @param type $idProizvod
-     */
-    public function prepisiOsobine($idProizvod) {
-        $query= $this->db->select('o.nazivOsobina, o.jedinica, v.nazivVrednost');
-        $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
-        $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
-        $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->where('vpo.status', 1);
-        $query= $this->db->get('osobina o');
-        $osobine= $query->result_array();
-        $string="";
-        foreach ($osobine as $osobina) {
-            $string.=$osobina['nazivOsobina']."|".$osobina['nazivVrednost']."|".$osobina['jedinica']."*";
-        }
-        $data=array('osobine'=>$string);
-        $query=  $this->db->where('idProizvod', $idProizvod);
-        $query=  $this->db->update('proizvod', $data);
-    }
     
 }
