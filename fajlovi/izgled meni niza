@@ -1,6 +1,21 @@
+Hijerarhija menija:
+
 Array (
-    [0] => Array ( [headerMenu] => Array ( [MenuId] => 2 [SubMenu] => ) )
-    [1] => Array ( [footerMenu] => Array ( [MenuId] => 5 [SubMenu] => Array (
-        [0] => Array ( [MenuId] => 6 [idParentMenu] => 5 [menuName] => footerSubmenu1 [url] => [anchor] => [target] => [privilege] => 0 )
-        [1] => Array ( [MenuId] => 7 [idParentMenu] => 5 [menuName] => footerSubmenu2 [url] => [anchor] => [target] => [privilege] => 0 ) 
-    )))) 
+    [0] => Array ( [headerMenu] => Array ( [MenuId] => 2 [SubMenu] => Array (
+        [0] => Array ( [MenuId] => 3 [idParentMenu] => 2 [url] => link1 [anchor] => anchor1 [target] => tar1 [privilege] => 1 ) 
+        [1] => Array ( [MenuId] => 4 [idParentMenu] => 2 [url] => link2 [anchor] => anch2 [target] => tar2 [privilege] => 2 ) 
+    ))) 
+    [1] => Array ( [footerMenu] => Array ( [MenuId] => 5 [SubMenu] => Array ( 
+        [0] => Array ( [MenuId] => 6 [idParentMenu] => 5 [menuName] => footerSubmenu1 [privilege] => 0 [SubMenu] => Array ( 
+            [0] => Array ( [MenuId] => 12 [idParentMenu] => 6 [menuName] => jajajaja [privilege] => 0 [SubMenu] => Array ( 
+                [0] => Array ( [MenuId] => 13 [idParentMenu] => 12 [menuName] => oooeoeo [privilege] => 0 [SubMenu] => )
+`           )) 
+            [1] => Array ( [MenuId] => 8 [idParentMenu] => 6 [url] => fLink1 [anchor] => anch1 [target] => tar1 [privilege] => 0 ) 
+            [2] => Array ( [MenuId] => 9 [idParentMenu] => 6 [url] => fLink2 [anchor] => anch2 [target] => tar2 [privilege] => 0 ) 
+        )) 
+        [1] => Array ( [MenuId] => 7 [idParentMenu] => 5 [menuName] => footerSubmenu2 [privilege] => 0 [SubMenu] => Array ( 
+            [0] => Array ( [MenuId] => 10 [idParentMenu] => 7 [url] => fLink3 [anchor] => anch3 [target] => tar3 [privilege] => 0 ) 
+            [1] => Array ( [MenuId] => 11 [idParentMenu] => 7 [url] => fLink4 [anchor] => anch4 [target] => tar4 [privilege] => 0 ) 
+        )) 
+    ))) 
+) 
