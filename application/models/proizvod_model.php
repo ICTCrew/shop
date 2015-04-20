@@ -45,6 +45,18 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
+    // DRUGI NACIN ZA PRETHODNE DVE TABELE!!!!! PROVERI (+catalogue_model)
+     public function getProizvodiT($idZapisa, $tabela, $limit=0, $offset=0, $kolSort='modelOpis', $tipSort='asc') {
+        $query= $this->db->select('idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->where($idZapisa['nazivId'], $idZapisa['vrednostId']);
+        $query= $this->db->where('p.status', 1);
+        $query= $this->db->order_by($kolSort, $tipSort);
+        $query= $this->db->get('proizvod p', $limit, $offset);
+        return $query->result_array();
+    }
+    /////////////////////////////////////////////////////
+    
     public function getProizvodiGrupe($idGrupa, $limit=0, $offset=0, $kolSort='modelOpis', $tipSort='asc') {
         $query= $this->db->select('p.idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
