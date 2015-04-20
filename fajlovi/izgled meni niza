@@ -1,0 +1,6 @@
+Array (
+    [0] => Array ( [headerMenu] => Array ( [MenuId] => 2 [SubMenu] => ) )
+    [1] => Array ( [footerMenu] => Array ( [MenuId] => 5 [SubMenu] => Array (
+        [0] => Array ( [MenuId] => 6 [idParentMenu] => 5 [menuName] => footerSubmenu1 [url] => [anchor] => [target] => [privilege] => 0 )
+        [1] => Array ( [MenuId] => 7 [idParentMenu] => 5 [menuName] => footerSubmenu2 [url] => [anchor] => [target] => [privilege] => 0 ) 
+    )))) 
