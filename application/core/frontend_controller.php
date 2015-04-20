@@ -2,7 +2,7 @@
 /**
  * Description of FrontEnd_Controller
  *
- * @author 
+ * @author Aleksa Novakovic
  */
 class frontend_controller extends MY_Controller {
     private $role;
