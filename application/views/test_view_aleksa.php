@@ -1,5 +1,5 @@
 <?php
-print_r($menu);
+//print_r($slider);
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

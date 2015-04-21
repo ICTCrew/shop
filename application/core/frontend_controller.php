@@ -20,6 +20,8 @@ class frontend_controller extends MY_Controller {
 	$this->load->view('templates/footer', $data);
     }
     
+    ///////////////////////LOAD MENU/////////////////////////////////////////
+    
     private function _loadMenu() {
         $menu = $this->frontend_model->getMeni();
         $menus = $this->_createMenu($menu);
@@ -88,26 +90,69 @@ class frontend_controller extends MY_Controller {
         return $currentMenu;
     }
     
+    ///////////////////////END LOAD MENU/////////////////////////////////////////
+    
+    ///////////////////////LOAD SLIDER/////////////////////////////////////////
+    
     private function _loadSlider() {
-        
+        $slider = $this->frontend_model->getSlajder();
+        $returnValue = array();
+        foreach ($slider as $value) {
+            $returnValue[$value['nazivSlajder']] = array();
+        }
+        foreach ($slider as $value) {
+            foreach ($returnValue as $key => &$rValue) {
+                if($key == $value['nazivSlajder'])
+                {
+                    $rValue[] = array('PicSrc' => $value['putanjaSlika'], 'url' => $value['url'],'title' => $value['title']);
+                }
+            }
+        }
+        return $returnValue;
     }
+    
+    ///////////////////////END LOAD SLIDER/////////////////////////////////////////
+    
+    ///////////////////////LOAD BRAND/////////////////////////////////////////
     
     public function loadBrand() {
-        
+        $brend = $this->frontend_model->getBrend();
+        $resultBrend = array();
+        foreach ($brend as $value) {
+            $resultBrend[] = array('idBrend' => $value['idBrend'], 'brendName' => $value['naziv'], 'url' => $value['url'], 'alt' => $value['alt'], 'picTitle' => $value['slikaTitle']);
+        }
+        return $resultBrend;
     }
     
+    ///////////////////////END LOAD BRAND/////////////////////////////////////////
+    
+    ///////////////////////LOAD CATEGORY/////////////////////////////////////////
+    
     public function loadCategory() {
-        
+        $category = $this->frontend_model->getKategorija();
+        $resultCategory = array();
+        foreach ($category as $value) {
+            $resultCategory[] = array('idCategory' => $value['idKategorija'], 'idParentCategory' => $value['idNadKategorija'], 'categoryName' => $value['nazivKategorija'], 'url' => $value['url'], 'alt' => $value['alt'], 'picTitle' => $value['slikaTitle']);
+        }
+        return $resultCategory;
     }
+    
+    ///////////////////////END LOAD CATEGORY/////////////////////////////////////
+    
+    ///////////////////////LOAD GROUP/////////////////////////////////////////
     
     public function loadGroup() {
         
     }
     
+    ///////////////////////END LOAD GROUP/////////////////////////////////////
+    
+    ///////////////////////SUBSCRIBE/////////////////////////////////////////
+    
     public function subscribe() {
         
     }
     
-    
+    ///////////////////////END SUBSCRIBE/////////////////////////////////////////
     
 }
