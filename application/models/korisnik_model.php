@@ -28,7 +28,7 @@ class Korisnik_model extends CI_Model{
         $this->db->join('proizvod_porudzbina pp', 'por.idPorudzbina=pp.idPorudzbina');
         $this->db->join('proizvod p', 'p.idProizvod=pp.idProizvod');
         $this->db->where('por.idKorisnik', $idKorisnik);
-        $this->db->where('por.status', 1);
+        $this->db->where('por.status', 2);
         $query=$this->db->get('porudzbina por');
         return $query->result_array();
     }

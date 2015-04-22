@@ -29,7 +29,7 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->select('idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idKategorija', $idKategorija);
-        $query= $this->db->where('p.status', 1);
+        $query= $this->db->where('p.status', 2);
         $query= $this->db->order_by($kolSort, $tipSort);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
@@ -39,18 +39,18 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->select('idProizvod, modelOpis, osobine,  opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where('idBrend', $idBrend);
-        $query= $this->db->where('p.status', 1);
+        $query= $this->db->where('p.status', 2);
         $query= $this->db->order_by($kolSort, $tipSort);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
     }
     
-    // DRUGI NACIN ZA PRETHODNE DVE TABELE!!!!! PROVERI (+catalogue_model)
+    // DRUGI NACIN ZA PRETHODNE DVE TABELE!!!!! (+catalogue_model)
      public function getProizvodiT($idZapisa, $tabela, $limit=0, $offset=0, $kolSort='modelOpis', $tipSort='asc') {
-        $query= $this->db->select('idProizvod, modelOpis, osobine, opis, statusPopust, cena, s.url,');
+        $query= $this->db->select('idProizvod,p.idBrend, modelOpis, osobine, opis, statusPopust, cena, s.url,');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
         $query= $this->db->where($idZapisa['nazivId'], $idZapisa['vrednostId']);
-        $query= $this->db->where('p.status', 1);
+        $query= $this->db->where('p.status', 2);
         $query= $this->db->order_by($kolSort, $tipSort);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
@@ -63,7 +63,8 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->join('proizvod_grupa pg', 'pg.idProizvod = p.idProizvod');
         $query= $this->db->join('grupa g', 'g.idGrupa = pg.idGrupa');
         $query= $this->db->where('g.idGrupa', $idGrupa);
-        $query= $this->db->where('p.status', 1);
+        $query= $this->db->where('p.status', 2);
+        $query= $this->db->where('pg.status', 2);
         $query= $this->db->order_by($kolSort, $tipSort);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
@@ -118,6 +119,7 @@ class Proizvod_model extends CI_Model{
     public function search($search) {
         $query= $this->db->select('idProizvod, idTipProizvod, idBrend, idKategorija, p.title AS Ptitle, description, modelOpis, opis, statusPopust, cena, s.url, s.title AS Stitle, s.alt');
         $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->where('p.status', 2);
         $query= $this->db->like('modelOpis', $search);
         $query= $this->db->or_like('opis', $search); 
         $query= $this->db->or_like('osobine', $search);
@@ -131,7 +133,7 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->join('proizvod_relacija pr', 'pr.idSlicanProizvod = p.idProizvod');
         $query= $this->db->join('tip_relacija tr', 'tr.idTipRelacija = pr.idTipRelacija');
         $query= $this->db->where('pr.idProizvod', $idProizvod);
-        $query= $this->db->where('pr.status', 1);
+        $query= $this->db->where('pr.status', 2);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
     }
@@ -140,7 +142,7 @@ class Proizvod_model extends CI_Model{
         $query= $this->db->select('idKomentar, datum, sadrzaj, ime, prezime, email');
         $query= $this->db->join('korisnik k', 'k.idKorisnik = kom.idKorisnik');
         $query= $this->db->where('kom.idProizvod', $idProizvod);
-        $query= $this->db->where('kom.status', 1);
+        $query= $this->db->where('kom.status', 2);
         $query= $this->db->order_by('datum', 'asc');
         $query= $this->db->get('komentar kom', $limit, $offset);
         return $query->result_array();
