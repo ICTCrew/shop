@@ -85,9 +85,50 @@ class Test_Controller extends CI_Controller{
         $data['sve']=  $this->catalogue_model->getProizvod(1);
         
         $data['sve']=  $this->catalogue_model->getProizvodiT(array('nazivId'=>'k.idKategorija', 'vrednostId'=>1), 'kategorija', 0, 0, 'modelOpis', 'asc');
-        */
+        
         $data['sve']=  $this->catalogue_model->getPovezaniProizvodi();
-        //$data['title']='Home';
+        
+        $data['sve']=  $this->catalogue_model->getKategorija(2);
+        
+        $data['sve']=  $this->catalogue_model->insertTabela('drzava',array('nazivDrzava'=>'Canada', 'status'=>'1'));
+        
+        $data['sve']=  $this->catalogue_model->idInsertTabela('proizvod_popust',array('idProizvod'=>'4', 'idPopust'=>'1', 'status'=>'1'));
+        
+        $data['sve']=  $this->catalogue_model->updateTabela('drzava', array('nazivId'=>'idDrzava', 'vrednostId'=>5), array('nazivDrzava'=>'Russia', 'status'=>'0'));
+        
+        * 
+        * NETESTIRAN ZBOG KASKADNOG BRISANJA KATEGORIJA!!!!
+        $data['sve']=  $this->catalogue_model->deleteKategorija(2, 1, ?);
+       
+        $data['sve']=  $this->catalogue_model->deleteBrend(3, 0);
+         
+        $data['sve']=  $this->proizvod_model->getProizvodiT(array('nazivId'=>'idBrend', 'vrednostId'=>'3'), 'brend', 0, 0, 'modelOpis', 'asc');
+       
+        $data['sve']=  $this->catalogue_model->getProizvodiT(array('nazivId'=>'k.idKategorija', 'vrednostId'=>'3'), 'kategorija', 0, 0, 'modelOpis', 'asc');
+      
+        $data['sve']=  $this->catalogue_model->getGrupe();
+        
+        $data['sve']=  $this->catalogue_model->getGrupa(2);
+         
+        $data['sve']=  $this->catalogue_model->deleteGrupa(1);
+        
+        $data['sve']=  $this->catalogue_model->getTipoviRelacija();
+        
+        $data['sve']=  $this->catalogue_model->getTipRelacije(1);
+        
+        $data['sve']=  $this->catalogue_model->deleteTipRelacija(2);
+        */
+        $data['sve']=  $this->catalogue_model->deleteProizvodRelacija(array('idProizvod'=>'1', 'idSlicanProizvod'=>'4', 'idTipRelacija'=>'1'));
+        
+        
+        
+        
+        
+        
+        
+        
+          //$data['title']='Home';
+        
         //$data['ulogovan']=false;
         
         $this->load->view('test_view',$data);
