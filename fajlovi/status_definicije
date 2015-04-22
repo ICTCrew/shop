@@ -1,7 +1,7 @@
 -status(general):
-    -1-"obrisan" iz baze
-    0-neaktivan
-    1-aktivan
+    0-"obrisan" iz baze
+    1-neaktivan
+    2-aktivan
 
 -status(korisnik):
     0-"obrisan" iz baze
