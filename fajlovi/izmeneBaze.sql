@@ -10,3 +10,20 @@ ALTER TABLE `proizvod_grupa` ADD `status` TINYINT(1) NOT NULL AFTER `idGrupa`;
 
 --Dodavanje statusa u vrednost (2)
 ALTER TABLE `vrednost` ADD `status` TINYINT(1) NOT NULL AFTER `nazivVrednost`;
+
+--Dodavanje tebele kategorija_brend i kreiranje CONSTRAINT-ova (3)
+CREATE TABLE IF NOT EXISTS `shop`.`kategorija_brend` 
+( `idKategorija` MEDIUMINT(8) NOT NULL,
+ `idBrend` MEDIUMINT(8) NOT NULL,
+ INDEX `index_brend_kategorija_idKategorija` (`idKategorija` ASC),
+ INDEX `index_brend_kategorija_idBrend` (`idBrend` ASC),
+ PRIMARY KEY (`idKategorija`, `idBrend`),
+ CONSTRAINT `fk_brend_kategorija_idKategorija`
+ FOREIGN KEY (`idKategorija`) REFERENCES `shop`.`kategorija` (`idKategorija`)
+ ON DELETE NO ACTION ON UPDATE NO ACTION, 
+ CONSTRAINT `fk_brend_kategorija_idBrend`
+ FOREIGN KEY (`idBrend`) REFERENCES `shop`.`brend` (`idBrend`)
+ ON DELETE NO ACTION ON UPDATE NO ACTION) 
+ENGINE = InnoDB 
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci
