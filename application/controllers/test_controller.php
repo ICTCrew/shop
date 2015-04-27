@@ -96,9 +96,11 @@ class Test_Controller extends CI_Controller{
         
         $data['sve']=  $this->catalogue_model->updateTabela('drzava', array('nazivId'=>'idDrzava', 'vrednostId'=>5), array('nazivDrzava'=>'Russia', 'status'=>'0'));
         
-        * 
+         
         * NETESTIRAN ZBOG KASKADNOG BRISANJA KATEGORIJA!!!!
-        $data['sve']=  $this->catalogue_model->deleteKategorija(2, 1, ?);
+         * 
+         
+        //$data['sve']=  $this->catalogue_model->deleteKategorija(2, 1, ?);
        
         $data['sve']=  $this->catalogue_model->deleteBrend(3, 0);
          
@@ -117,8 +119,10 @@ class Test_Controller extends CI_Controller{
         $data['sve']=  $this->catalogue_model->getTipRelacije(1);
         
         $data['sve']=  $this->catalogue_model->deleteTipRelacija(2);
-        */
+        
         $data['sve']=  $this->catalogue_model->deleteProizvodRelacija(array('idProizvod'=>'1', 'idSlicanProizvod'=>'4', 'idTipRelacija'=>'1'));
+        */
+        $data['sve']=  $this->proizvod_model->getBrendoviKategorije(3);
         
         
         
