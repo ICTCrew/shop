@@ -84,6 +84,20 @@ class Proizvod_model extends CI_Model{
         return $query->result_array();
     }
     
+    /**
+     * 
+     * @param type $idKategorija
+     * @return type
+     */
+    public function getBrendoviKategorije($idKategorija) {
+        $query= $this->db->select('b.idBrend, b.naziv');
+        $query= $this->db->join('brend b', 'kb.idBrend = b.idBrend');
+        $query= $this->db->where('kb.idKategorija', $idKategorija);
+        $query= $this->db->where('b.status', 2);
+        $query= $this->db->get('kategorija_brend kb');
+        return $query->result_array();
+    }
+    
     
     
 
