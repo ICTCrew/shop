@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2015 at 11:05 AM
+-- Generation Time: May 02, 2015 at 11:15 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -30,15 +30,18 @@ CREATE TABLE IF NOT EXISTS `brend` (
 `idBrend` mediumint(8) NOT NULL,
   `idSlika` mediumint(8) NOT NULL,
   `naziv` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `brend`
 --
 
 INSERT INTO `brend` (`idBrend`, `idSlika`, `naziv`, `status`) VALUES
-(1, 1, 'brend', 1);
+(1, 1, 'brend', 1),
+(2, 1, 'brend2', 1),
+(3, 1, 'brend3', 1),
+(5, 1, 'brend4', 1);
 
 -- --------------------------------------------------------
 
@@ -57,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `cena` (
   `datumCenaDo` timestamp NULL DEFAULT NULL,
   `trenutnaKolicina` double NOT NULL,
   `prodajnaCena` decimal(10,2) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -108,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `dobavljac` (
   `telefon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `adresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tekuciRacun` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` mediumint(8) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -116,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `dobavljac` (
 --
 
 INSERT INTO `dobavljac` (`idDobavljac`, `idGrad`, `idTipPlacanja`, `nazivDobavljaca`, `maticniBroj`, `pib`, `telefon`, `adresa`, `tekuciRacun`, `status`) VALUES
-(1, 1, 1, 'dobavljac 1', 8388607, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 00000001),
-(2, 1, 1, 'dobavljac 1', 1231231, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 00000001);
+(1, 1, 1, 'dobavljac 1', 8388607, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 1),
+(2, 1, 1, 'dobavljac 1', 1231231, 123123123, '123/123123', 'adresa dob1', '123/123123123/12312', 1);
 
 -- --------------------------------------------------------
 
@@ -128,15 +131,18 @@ INSERT INTO `dobavljac` (`idDobavljac`, `idGrad`, `idTipPlacanja`, `nazivDobavlj
 CREATE TABLE IF NOT EXISTS `drzava` (
 `idDrzava` mediumint(8) NOT NULL,
   `nazivDrzava` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `drzava`
 --
 
 INSERT INTO `drzava` (`idDrzava`, `nazivDrzava`, `status`) VALUES
-(1, 'srbija', 1);
+(1, 'srbija', 1),
+(2, 'Canada', 1),
+(4, 'Japan', 1),
+(5, 'Russia', 0);
 
 -- --------------------------------------------------------
 
@@ -149,15 +155,16 @@ CREATE TABLE IF NOT EXISTS `grad` (
   `idDrzava` mediumint(8) NOT NULL,
   `nazivGrad` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `postBroj` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `grad`
 --
 
 INSERT INTO `grad` (`idGrad`, `idDrzava`, `nazivGrad`, `postBroj`, `status`) VALUES
-(1, 1, 'bg', '11000', 1);
+(1, 1, 'bg', '11000', 1),
+(2, 2, 'toronto', '123/321', 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `grupa` (
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `idSlika` mediumint(8) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -179,8 +186,8 @@ CREATE TABLE IF NOT EXISTS `grupa` (
 --
 
 INSERT INTO `grupa` (`idGrupa`, `nazivGrupa`, `title`, `description`, `idSlika`, `status`) VALUES
-(1, 'grupa1', 'grp1 title', 'grp2 desc', 1, 1),
-(2, 'grupa1', 'title grupa1', 'desc grupa1', 1, 1);
+(1, 'grupa1', 'grp1 title', 'grp1 desc', 1, 1),
+(2, 'grupa2', 'title grupa2', 'desc grupa2', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -196,15 +203,64 @@ CREATE TABLE IF NOT EXISTS `kategorija` (
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sortOrder` mediumint(8) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `kategorija`
 --
 
 INSERT INTO `kategorija` (`idKategorija`, `idNadKategorija`, `idSlika`, `nazivKategorija`, `title`, `description`, `sortOrder`, `status`) VALUES
-(1, NULL, 1, 'kategorija', 'kategorija title', 'kategorija desc', 1, 1);
+(1, NULL, 1, 'kategorija', 'kategorija title', 'kategorija desc', 1, 1),
+(2, 1, 1, 'podKategorija', 'title pod', 'desc pod', 2, 1),
+(3, 2, 1, 'podKategorija2', 'title pod', 'desc pod', 0, 1),
+(4, 1, 1, 'podKat', 'podKat title', 'podKat title', 0, 1),
+(13, 4, 1, 'pod kat 1 ali ispod', 'asd', 'asd', 2, 1),
+(14, 4, 1, 'pod kat 2 ali iznad', 'asd', 'asd', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategorija_brend`
+--
+
+CREATE TABLE IF NOT EXISTS `kategorija_brend` (
+  `idKategorija` mediumint(8) NOT NULL,
+  `idBrend` mediumint(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kategorija_brend`
+--
+
+INSERT INTO `kategorija_brend` (`idKategorija`, `idBrend`) VALUES
+(1, 1),
+(1, 2),
+(3, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategorija_brend_osobina`
+--
+
+CREATE TABLE IF NOT EXISTS `kategorija_brend_osobina` (
+  `idKategorija` mediumint(8) NOT NULL,
+  `idBrend` mediumint(8) NOT NULL,
+  `idOsobina` mediumint(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kategorija_brend_osobina`
+--
+
+INSERT INTO `kategorija_brend_osobina` (`idKategorija`, `idBrend`, `idOsobina`) VALUES
+(1, 1, 1),
+(1, 1, 2),
+(1, 1, 3),
+(1, 1, 4),
+(1, 1, 5),
+(1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -218,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `idProizvod` mediumint(8) NOT NULL,
   `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `sadrzaj` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -248,17 +304,18 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `adresa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `datumPosLog` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `korisnik`
 --
 
 INSERT INTO `korisnik` (`idKorisnik`, `idUloga`, `idGrad`, `aktivacioniKod`, `datumKreiranja`, `datumRodjenja`, `ime`, `prezime`, `adresa`, `telefon`, `email`, `status`, `password`, `datumPosLog`) VALUES
-(1, 1, 1, '123123123123', '2015-04-10 14:07:20', '2014-04-16 22:00:00', 'Biljana', 'Domcic', 'lestane 2', 'fiksni', 'bilja@bla.com', 2, 'e36f9b10672fab98f504ac6438368edf', '2015-04-19 07:38:02');
+(1, 1, 1, '123123123123', '2015-04-10 14:07:20', '2014-04-16 22:00:00', 'Biljana', 'Domcic', 'lestane 2', 'fiksni', 'bilja@bla.com', 2, 'e36f9b10672fab98f504ac6438368edf', '2015-04-19 07:38:02'),
+(2, 1, 2, 'asdsadadsadadaqwe123123', '2015-05-02 20:50:59', NULL, 'Nikola', 'Matic', 'asd dsa', 'imam', 'i to imam', 1, 'password', '2015-05-02 20:50:59');
 
 -- --------------------------------------------------------
 
@@ -276,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `kurir` (
   `idGrad` mediumint(8) NOT NULL,
   `tekuciRacun` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `maticniBroj` bigint(13) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -300,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `meni` (
   `anchor` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `target` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `privilegija` mediumint(8) NOT NULL DEFAULT '0',
-  `status` tinyint(1) DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `prioritetLink` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -309,10 +366,10 @@ CREATE TABLE IF NOT EXISTS `meni` (
 --
 
 INSERT INTO `meni` (`idMeni`, `idNadMeni`, `nazivMeni`, `url`, `anchor`, `target`, `privilegija`, `status`, `prioritetLink`) VALUES
-(2, NULL, 'glavni meni', NULL, NULL, NULL, 0, 1, NULL),
+(2, NULL, 'main_menu', NULL, NULL, NULL, 0, 1, NULL),
 (3, 2, NULL, 'link1', 'anchor1', 'tar1', 0, 1, 1),
 (4, 2, NULL, 'link2', 'anch2', 'tar2', 0, 1, 2),
-(5, NULL, 'footer meni', NULL, NULL, NULL, 0, 1, NULL),
+(5, NULL, 'footer_menu', NULL, NULL, NULL, 0, 1, NULL),
 (6, 5, 'fMeni1', NULL, NULL, NULL, 0, 1, NULL),
 (7, 5, 'fMeni2', NULL, NULL, NULL, 0, 1, NULL),
 (8, 6, NULL, 'fLink1', 'anch1', 'tar1', 0, 1, 1),
@@ -335,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `nabavka` (
   `datumDostave` timestamp NULL DEFAULT NULL,
   `cenaKomad` decimal(10,2) NOT NULL,
   `statusPlaceno` tinyint(1) unsigned zerofill NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -355,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `nacin_isporuke` (
 `idNacinIsporuke` mediumint(8) NOT NULL,
   `idKurir` mediumint(8) NOT NULL,
   `nazivIsporuke` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -374,7 +431,7 @@ INSERT INTO `nacin_isporuke` (`idNacinIsporuke`, `idKurir`, `nazivIsporuke`, `st
 CREATE TABLE IF NOT EXISTS `nacin_kurir_placanje` (
 `idNacinKurirPlacanje` mediumint(8) NOT NULL,
   `nazivNacinKurirPlacanje` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -393,7 +450,7 @@ INSERT INTO `nacin_kurir_placanje` (`idNacinKurirPlacanje`, `nazivNacinKurirPlac
 CREATE TABLE IF NOT EXISTS `nacin_placanja` (
 `idNacinPlacanja` mediumint(8) NOT NULL,
   `nazivPlacanje` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -401,8 +458,8 @@ CREATE TABLE IF NOT EXISTS `nacin_placanja` (
 --
 
 INSERT INTO `nacin_placanja` (`idNacinPlacanja`, `nazivPlacanje`, `status`) VALUES
-(1, 'nacin placanja 1', 0),
-(2, 'naziv lacanje 1', 1);
+(1, 'nacin placanja 1', 1),
+(2, 'naziv placanje 2', 1);
 
 -- --------------------------------------------------------
 
@@ -414,16 +471,17 @@ CREATE TABLE IF NOT EXISTS `opcija` (
 `idOpcija` mediumint(8) NOT NULL,
   `nazivOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `opisOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `linkOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `linkOpcija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `opcija`
 --
 
-INSERT INTO `opcija` (`idOpcija`, `nazivOpcija`, `opisOpcija`, `linkOpcija`) VALUES
-(1, 'opcija1', 'opis opc 1', 'link opc 1'),
-(2, 'pocija 2', 'opis opc 2', 'link opc 2');
+INSERT INTO `opcija` (`idOpcija`, `nazivOpcija`, `opisOpcija`, `linkOpcija`, `status`) VALUES
+(1, 'opcija1', 'upravljanje katalogom', 'katalog', 1),
+(2, 'pocija 2', 'upravljanje prodajom', 'prodaja', 1);
 
 -- --------------------------------------------------------
 
@@ -454,7 +512,7 @@ CREATE TABLE IF NOT EXISTS `osobina` (
 `idOsobina` mediumint(8) NOT NULL,
   `nazivOsobina` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `jedinica` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -479,7 +537,7 @@ CREATE TABLE IF NOT EXISTS `popust` (
   `idTipPopust` mediumint(8) NOT NULL,
   `nazivPopust` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `iznos` double NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -504,7 +562,7 @@ CREATE TABLE IF NOT EXISTS `porudzbina` (
   `cena` decimal(10,2) NOT NULL,
   `statusIsporuka` tinyint(1) unsigned zerofill NOT NULL,
   `statusPlaceno` tinyint(1) unsigned zerofill NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -524,7 +582,15 @@ CREATE TABLE IF NOT EXISTS `pretplata` (
 `idPretplata` mediumint(8) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pretplata`
+--
+
+INSERT INTO `pretplata` (`idPretplata`, `email`, `status`) VALUES
+(1, 'pretplatnik1', 1),
+(2, 'pretplatnik2', 1);
 
 -- --------------------------------------------------------
 
@@ -549,17 +615,18 @@ CREATE TABLE IF NOT EXISTS `proizvod` (
   `statusPopust` tinyint(1) unsigned zerofill NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `cena` decimal(10,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `proizvod`
 --
 
 INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`, `idSlika`, `datumKreiranja`, `barkod`, `title`, `description`, `modelOpis`, `opis`, `osobine`, `statusKolicinaVidljivost`, `statusPopust`, `status`, `cena`) VALUES
-(1, 1, 1, 1, 1, '2015-04-19 08:00:09', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
-(2, 1, 1, 1, 1, '2015-04-16 22:03:04', 'barkod 2', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti', '', 2, 2, 1, '150.00'),
-(4, 1, 1, 1, 1, '2015-04-07 16:26:35', 'barkod 3', 'title', 'description', 'model opis2', 'neki veci opis 3', '', 2, 2, 1, '150.00'),
-(5, 1, 1, 1, 1, '2015-04-16 22:03:45', 'barkod 4', 'title', 'description', 'model opis2', 'opis proizvoda pretraga karakteristika osobine funkcionalnosti i jos po nesto sto nema u prvom pretraga pregled', '', 2, 2, 1, '150.00');
+(1, 1, 1, 1, 1, '2015-05-02 20:55:39', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'a model opis', 'neki veci opis', 'boja|zuta|*visina|15|cm*sirina|45|cm*duzina|67|cm*tezina|100|kg*', 1, 1, 1, '300.00'),
+(2, 1, 1, 1, 1, '2015-05-02 20:55:39', 'barkod 2', 'title', 'description', 'b model opis2', 'opis proizvoda', '', 2, 2, 1, '200.00'),
+(4, 1, 2, 1, 1, '2015-05-02 20:55:39', 'barkod 3', 'title', 'description', 'c model opis2', 'neki veci opis 3', '', 2, 2, 1, '250.00'),
+(5, 1, 1, 1, 1, '2015-05-02 20:55:39', 'barkod 4', 'title', 'description', ' f model opis2', 'opis proizvoda 5', '', 2, 2, 1, '150.00'),
+(6, 3, 3, 3, 1, '2015-05-02 20:55:39', 'qweqweqwe', 'qweqweqwe', 'qweqweqwe', 'qweqweqwe', 'qweqweqwe', 'qweqweqwe', 1, 0, 1, '123.00');
 
 -- --------------------------------------------------------
 
@@ -569,15 +636,21 @@ INSERT INTO `proizvod` (`idProizvod`, `idTipProizvod`, `idBrend`, `idKategorija`
 
 CREATE TABLE IF NOT EXISTS `proizvod_grupa` (
   `idProizvod` mediumint(8) NOT NULL,
-  `idGrupa` mediumint(8) NOT NULL
+  `idGrupa` mediumint(8) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `proizvod_grupa`
 --
 
-INSERT INTO `proizvod_grupa` (`idProizvod`, `idGrupa`) VALUES
-(1, 1);
+INSERT INTO `proizvod_grupa` (`idProizvod`, `idGrupa`, `status`) VALUES
+(1, 1, 1),
+(1, 2, 1),
+(2, 1, 1),
+(4, 1, 1),
+(4, 2, 1),
+(5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -588,7 +661,7 @@ INSERT INTO `proizvod_grupa` (`idProizvod`, `idGrupa`) VALUES
 CREATE TABLE IF NOT EXISTS `proizvod_popust` (
   `idProizvod` mediumint(8) NOT NULL,
   `idPopust` mediumint(8) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -596,7 +669,9 @@ CREATE TABLE IF NOT EXISTS `proizvod_popust` (
 --
 
 INSERT INTO `proizvod_popust` (`idProizvod`, `idPopust`, `status`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 1, 1),
+(4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -629,7 +704,7 @@ CREATE TABLE IF NOT EXISTS `proizvod_relacija` (
   `idProizvod` mediumint(8) NOT NULL,
   `idTipRelacija` mediumint(8) NOT NULL,
   `idSlicanProizvod` mediumint(8) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -650,7 +725,7 @@ INSERT INTO `proizvod_relacija` (`idProizvod`, `idTipRelacija`, `idSlicanProizvo
 CREATE TABLE IF NOT EXISTS `slajder` (
 `idSlajder` mediumint(8) NOT NULL,
   `nazivSlajder` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -658,7 +733,7 @@ CREATE TABLE IF NOT EXISTS `slajder` (
 --
 
 INSERT INTO `slajder` (`idSlajder`, `nazivSlajder`, `status`) VALUES
-(1, 'slajder1', 1),
+(1, 'main_slider', 1),
 (2, 'slajder2', 1);
 
 -- --------------------------------------------------------
@@ -672,7 +747,7 @@ CREATE TABLE IF NOT EXISTS `slajder_slika` (
   `putanjaSlika` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -700,7 +775,9 @@ CREATE TABLE IF NOT EXISTS `slajder_slika_veza` (
 
 INSERT INTO `slajder_slika_veza` (`idSlajderSlika`, `idSlajder`) VALUES
 (1, 1),
-(2, 1);
+(2, 1),
+(1, 2),
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -737,7 +814,7 @@ CREATE TABLE IF NOT EXISTS `stranica` (
   `keywords` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `sadrzaj` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -785,7 +862,7 @@ INSERT INTO `tip_osobina` (`idTip`, `idOsobina`, `defaultVrednost`, `prioritet`)
 CREATE TABLE IF NOT EXISTS `tip_popust` (
 `idTipPopust` mediumint(8) NOT NULL,
   `nazivTipPopust` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -805,7 +882,7 @@ INSERT INTO `tip_popust` (`idTipPopust`, `nazivTipPopust`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `tip_proizvoda` (
 `idTipProizvod` mediumint(8) NOT NULL,
   `nazivTip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -828,7 +905,7 @@ INSERT INTO `tip_proizvoda` (`idTipProizvod`, `nazivTip`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `tip_relacija` (
 `idTipRelacija` mediumint(8) NOT NULL,
   `nazivTipRelacija` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -848,7 +925,7 @@ INSERT INTO `tip_relacija` (`idTipRelacija`, `nazivTipRelacija`, `status`) VALUE
 CREATE TABLE IF NOT EXISTS `uloga` (
 `idUloga` mediumint(8) NOT NULL,
   `nazivUloga` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -869,7 +946,7 @@ CREATE TABLE IF NOT EXISTS `valuta` (
   `idDrzava` mediumint(8) NOT NULL,
   `nazivValuta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `skracenicaValuta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -877,7 +954,7 @@ CREATE TABLE IF NOT EXISTS `valuta` (
 --
 
 INSERT INTO `valuta` (`idValuta`, `idDrzava`, `nazivValuta`, `skracenicaValuta`, `status`) VALUES
-(1, 1, 'Dinar', 'RSD', 0),
+(1, 4, 'Europe', 'EUR', 1),
 (2, 1, 'Dinar', 'RSD', 1);
 
 -- --------------------------------------------------------
@@ -888,24 +965,25 @@ INSERT INTO `valuta` (`idValuta`, `idDrzava`, `nazivValuta`, `skracenicaValuta`,
 
 CREATE TABLE IF NOT EXISTS `vrednost` (
 `idVrednost` mediumint(8) NOT NULL,
-  `nazivVrednost` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `nazivVrednost` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `vrednost`
 --
 
-INSERT INTO `vrednost` (`idVrednost`, `nazivVrednost`) VALUES
-(1, 'bela'),
-(2, 'zuta'),
-(3, 'plava'),
-(4, '12'),
-(5, '15'),
-(6, '45'),
-(7, '50'),
-(8, '67'),
-(9, '70'),
-(10, '100');
+INSERT INTO `vrednost` (`idVrednost`, `nazivVrednost`, `status`) VALUES
+(1, 'bela', 0),
+(2, 'zuta', 0),
+(3, 'plava', 0),
+(4, '12', 0),
+(5, '15', 0),
+(6, '45', 0),
+(7, '50', 0),
+(8, '67', 0),
+(9, '70', 0),
+(10, '100', 0);
 
 -- --------------------------------------------------------
 
@@ -917,7 +995,7 @@ CREATE TABLE IF NOT EXISTS `vrednost_proizvod_osobina` (
   `idVrednost` mediumint(8) NOT NULL,
   `idOsobina` mediumint(8) NOT NULL,
   `idProizvod` mediumint(8) NOT NULL,
-  `status` tinyint(1) unsigned zerofill NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -927,6 +1005,7 @@ CREATE TABLE IF NOT EXISTS `vrednost_proizvod_osobina` (
 INSERT INTO `vrednost_proizvod_osobina` (`idVrednost`, `idOsobina`, `idProizvod`, `status`) VALUES
 (2, 1, 1, 1),
 (5, 2, 1, 1),
+(6, 2, 4, 1),
 (6, 3, 1, 1),
 (8, 4, 1, 1),
 (10, 5, 1, 1);
@@ -981,7 +1060,19 @@ ALTER TABLE `grupa`
 -- Indexes for table `kategorija`
 --
 ALTER TABLE `kategorija`
- ADD PRIMARY KEY (`idKategorija`), ADD UNIQUE KEY `sortOrder` (`sortOrder`), ADD UNIQUE KEY `nazivKategorija_UNIQUE` (`nazivKategorija`), ADD KEY `fk_kategorija_kategorija1_idx` (`idNadKategorija`), ADD KEY `fk_kategorija_slika1_idx` (`idSlika`);
+ ADD PRIMARY KEY (`idKategorija`), ADD UNIQUE KEY `nazivKategorija_UNIQUE` (`nazivKategorija`), ADD KEY `fk_kategorija_kategorija1_idx` (`idNadKategorija`), ADD KEY `fk_kategorija_slika1_idx` (`idSlika`);
+
+--
+-- Indexes for table `kategorija_brend`
+--
+ALTER TABLE `kategorija_brend`
+ ADD PRIMARY KEY (`idKategorija`,`idBrend`), ADD KEY `index_brend_kategorija_idKategorija` (`idKategorija`), ADD KEY `index_brend_kategorija_idBrend` (`idBrend`);
+
+--
+-- Indexes for table `kategorija_brend_osobina`
+--
+ALTER TABLE `kategorija_brend_osobina`
+ ADD PRIMARY KEY (`idKategorija`,`idBrend`,`idOsobina`), ADD KEY `index_brend_kategorija_osobina_idKategorija` (`idKategorija`), ADD KEY `index_brend_kategorija_osobina_idBrend` (`idBrend`), ADD KEY `index_brend_kategorija_osobina_idOsobina` (`idKategorija`), ADD KEY `fk_brend_kategorija_osobina_idOsobina` (`idOsobina`);
 
 --
 -- Indexes for table `komentar`
@@ -1183,7 +1274,7 @@ ALTER TABLE `vrednost_proizvod_osobina`
 -- AUTO_INCREMENT for table `brend`
 --
 ALTER TABLE `brend`
-MODIFY `idBrend` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idBrend` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `cena`
 --
@@ -1198,12 +1289,12 @@ MODIFY `idDobavljac` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `drzava`
 --
 ALTER TABLE `drzava`
-MODIFY `idDrzava` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idDrzava` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `grad`
 --
 ALTER TABLE `grad`
-MODIFY `idGrad` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idGrad` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `grupa`
 --
@@ -1213,7 +1304,7 @@ MODIFY `idGrupa` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `kategorija`
 --
 ALTER TABLE `kategorija`
-MODIFY `idKategorija` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idKategorija` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `komentar`
 --
@@ -1223,7 +1314,7 @@ MODIFY `idKomentar` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `korisnik`
 --
 ALTER TABLE `korisnik`
-MODIFY `idKorisnik` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idKorisnik` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kurir`
 --
@@ -1278,12 +1369,12 @@ MODIFY `idPorudzbina` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `pretplata`
 --
 ALTER TABLE `pretplata`
-MODIFY `idPretplata` mediumint(8) NOT NULL AUTO_INCREMENT;
+MODIFY `idPretplata` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `proizvod`
 --
 ALTER TABLE `proizvod`
-MODIFY `idProizvod` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `idProizvod` mediumint(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `slajder`
 --
@@ -1385,6 +1476,21 @@ ADD CONSTRAINT `fk_grupa_slika` FOREIGN KEY (`idSlika`) REFERENCES `slika` (`idS
 ALTER TABLE `kategorija`
 ADD CONSTRAINT `fk_kategorija_kategorija1` FOREIGN KEY (`idNadKategorija`) REFERENCES `kategorija` (`idKategorija`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_kategorija_slika1` FOREIGN KEY (`idSlika`) REFERENCES `slika` (`idSlika`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `kategorija_brend`
+--
+ALTER TABLE `kategorija_brend`
+ADD CONSTRAINT `fk_brend_kategorija_idBrend` FOREIGN KEY (`idBrend`) REFERENCES `brend` (`idBrend`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_brend_kategorija_idKategorija` FOREIGN KEY (`idKategorija`) REFERENCES `kategorija` (`idKategorija`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `kategorija_brend_osobina`
+--
+ALTER TABLE `kategorija_brend_osobina`
+ADD CONSTRAINT `fk_brend_kategorija_osobina_idBrend` FOREIGN KEY (`idBrend`) REFERENCES `kategorija_brend` (`idBrend`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_brend_kategorija_osobina_idKategorija` FOREIGN KEY (`idKategorija`) REFERENCES `kategorija_brend` (`idKategorija`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_brend_kategorija_osobina_idOsobina` FOREIGN KEY (`idOsobina`) REFERENCES `osobina` (`idOsobina`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `komentar`
