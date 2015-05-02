@@ -52,7 +52,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->select('k.idKategorija, k.idNadKategorija, kk.nazivKategorija AS nazivNadKategorija, k.idSlika, k.nazivKategorija AS nazivkategorija, k.title, k.description, k.sortOrder, k.status,');
         $query= $this->db->join('slika s', 's.idSlika = k.idSlika');
         $query= $this->db->join('kategorija kk', 'k.idNadKategorija = kk.idKategorija', 'left');
-        $query= $this->db->where('k.status>', 0);
+        $query= $this->db->where('k.status>', -1);
         $query= $this->db->order_by('sortOrder', 'asc');
         $query= $this->db->get('kategorija k', $limit, $offset);
         return $query->result_array();
@@ -74,10 +74,10 @@ class Catalogue_model extends Backend_model{
      * @param int $nacin - nacin kaskadnog brisanja
      */
     
-    public function deleteKategorija($idKategorija, $nacinProizvod, $nacinKategorija) {
+    public function deleteKategorija($idKategorija, $nacinProizvod, $nacinPodKategorija) {
         $this->db->where('idKategorija', $idKategorija);
-        $this->db->update('kategorija', array('status'=> '0'));
-        if($nacinProizvod<2){
+        $this->db->update('kategorija', array('status'=> '-1'));
+        if($nacinProizvod<1){
             $this->db->where('idKategorija', $idKategorija);
             $this->db->update('proizvod', array('status'=> $nacinProizvod));
         }
@@ -85,11 +85,13 @@ class Catalogue_model extends Backend_model{
             $this->db->where('idKategorija', $idKategorija);
             $this->db->update('proizvod', array('idKategorija'=> $nacinProizvod));
         }
-        if($nacinKategorija<2){
-            // KASKADNI UPDATE STATUSA NA $nacinKategorija
+        if($nacinPodKategorija<1){
+            $this->db->where('idNadKategorija', $idKategorija);
+        $this->db->update('kategorija', array('status'=>$nacinPodKategorija));
         }
         else{
-            // KASKADNI UPDATE idNadKategorije NA $nacinKategorija
+            $this->db->where('idNadKategorija', $idKategorija);
+            $this->db->update('proizvod', array('idKategorija'=> $nacinPodKategorija));
         }
         
     }
@@ -105,7 +107,7 @@ class Catalogue_model extends Backend_model{
     public function getBrendovi($limit=0, $offset=0) {
         $query= $this->db->select('idBrend, naziv, url, b.idSlika, b.status');
         $query= $this->db->join('slika s', 's.idSlika = b.idSlika');
-        $query= $this->db->where('b.status>', 0);
+        $query= $this->db->where('b.status>', -1);
         $query= $this->db->get('brend b', $limit, $offset);
         return $query->result_array();
     }
@@ -115,6 +117,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->select('idBrend, naziv, url, b.idSlika, b.status');
         $query= $this->db->join('slika s', 's.idSlika = b.idSlika');
         $query= $this->db->where('idBrend', $idBrend);
+        $query= $this->db->where('b.status>', -1);
         $query= $this->db->get('brend b');
         return $query->result_array();
     }
@@ -128,8 +131,8 @@ class Catalogue_model extends Backend_model{
    
     public function deleteBrend($idBrend, $nacin) {
         $this->db->where('idBrend', $idBrend);
-        $this->db->update('brend', array('status'=> '0')); 
-        if($nacin<2){
+        $this->db->update('brend', array('status'=> '-1')); 
+        if($nacin<1){
             $this->db->where('idBrend', $idBrend);
             $this->db->update('proizvod', array('status'=> $nacin));
         }
@@ -152,6 +155,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->join('brend b', 'b.idBrend = p.idBrend');
         $query= $this->db->join('kategorija k', 'k.idKategorija = p.idKategorija');
         $query= $this->db->where('idProizvod', $idProizvod);
+        $query= $this->db->where('p.status>', -1);
         $query= $this->db->get('proizvod p');
         return $query->result_array();
     }
@@ -163,7 +167,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->join('brend b', 'b.idBrend = p.idBrend');
         $query= $this->db->join('kategorija k', 'k.idKategorija = p.idKategorija');
         $query= $this->db->where($idTabela['nazivId'], $idTabela['vrednostId']);
-        $query= $this->db->where('p.status', 2);
+        $query= $this->db->where('p.status>', -1);
         $query= $this->db->order_by($kolSort, $tipSort);
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
@@ -201,7 +205,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->join('vrednost_proizvod_osobina vpo', 'o.idOsobina = vpo.idOsobina');
         $query= $this->db->join('vrednost v', 'v.idVrednost = vpo.idVrednost');
         $query= $this->db->where('idProizvod', $idProizvod);
-        $query= $this->db->where('vpo.status', 1);
+        $query= $this->db->where('vpo.status>', -1);
         $query= $this->db->get('osobina o');
         return $query->result_array();
     }
@@ -234,7 +238,7 @@ class Catalogue_model extends Backend_model{
     public function getGrupe($limit=0, $offset=0) {
         $query= $this->db->select('idGrupa, nazivGrupa, url');
         $query= $this->db->join('slika s', 's.idSlika = g.idSlika');
-        $query= $this->db->where('g.status', 1);
+        $query= $this->db->where('g.status>', -1);
         $query= $this->db->get('grupa g', $limit, $offset);
         return $query->result_array();
     }
@@ -243,6 +247,7 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->select('idGrupa, nazivGrupa, g.title, description, g.status, g.idSlika, s.url ');
         $query= $this->db->join('slika s', 's.idSlika = g.idSlika');
         $query= $this->db->where('g.idGrupa', $idGrupa);
+        $query= $this->db->where('g.status>', -1);
         $query= $this->db->get('grupa g');
         return $query->result_array();
     }
@@ -251,10 +256,10 @@ class Catalogue_model extends Backend_model{
   
     public function deleteGrupa($idGrupa) {
         $this->db->where('idGrupa', $idGrupa);
-        $this->db->update('grupa', array('status'=> '0'));
+        $this->db->update('grupa', array('status'=> '-1'));
         
         $this->db->where('idGrupa', $idGrupa);
-        $this->db->update('proizvod_grupa', array('status'=> '0'));
+        $this->db->update('proizvod_grupa', array('status'=> '1'));
     }
     
     ///////////////////// KRAJ GRUPA ////////////////////////////////
@@ -269,14 +274,14 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->join('proizvod p2', 'pr.idSlicanProizvod = p2.idProizvod');
         $query= $this->db->join('slika s2', 'p2.idSlika = s2.idSlika');
         $query= $this->db->join('tip_relacija tr', 'tr.idTipRelacija = pr.idTipRelacija');
-        $query= $this->db->where('pr.status', 2);
+        $query= $this->db->where('pr.status>', -1);
         $query= $this->db->get('proizvod p1', $limit, $offset);
         return $query->result_array();
     }
     
     public function getTipoviRelacija() {
         $query= $this->db->select('idTipRelacija, nazivTipRelacija');
-        $query= $this->db->where('status', 2);
+        $query= $this->db->where('status>', -1);
         $query= $this->db->get('tip_relacija');
         return $query->result_array();
     }
@@ -284,32 +289,34 @@ class Catalogue_model extends Backend_model{
     public function getTipRelacije($idTipRelacija) {
         $query= $this->db->select('idTipRelacija, nazivTipRelacija');
         $query= $this->db->where('idTipRelacija', $idTipRelacija);
+        $query= $this->db->where('status>', -1);
         $query= $this->db->get('tip_relacija');
         return $query->result_array();
     }
     
     
-    // DIZANJE STATUSA NA "AKTIVAN" PRETHODNO IZBRISANOG PROIZVODA
+    // DIZANJE STATUSA NA "AKTIVAN" PRETHODNO IZBRISANE RELACIJE (INACE INSERT)
     //netestiran
+    //proba update-a, pa ako update ne uspe (ne postoji ID), uraditi insert?
     public function updateProizvodRelacija($uneseno) {
         $this->db->where('idTipRelacija', $uneseno['idTipRelacija']);
         $this->db->where('idProizvod', $uneseno['idProizvod']);
         $this->db->where('idSlicanProizvod', $uneseno['idSlicanProizvod']);
-        $this->db->update('proizvod_relacija', array('status'=> '2')); 
+        $this->db->update('proizvod_relacija', array('status'=> '1')); 
     }
    
      public function deleteTipRelacija($idTipRelacija) {
         $this->db->where('idTipRelacija', $idTipRelacija);
-        $this->db->update('tip_relacija', array('status'=> '0')); 
+        $this->db->update('tip_relacija', array('status'=> '-1')); 
         $this->db->where('idTipRelacija', $idTipRelacija);
-        $this->db->update('proizvod_relacija', array('status'=> '0')); 
+        $this->db->update('proizvod_relacija', array('status'=> '-1')); 
     }
    
     public function deleteProizvodRelacija($uneseno) {
         $this->db->where('idTipRelacija', $uneseno['idTipRelacija']);
         $this->db->where('idProizvod', $uneseno['idProizvod']);
         $this->db->where('idSlicanProizvod', $uneseno['idSlicanProizvod']);
-        $this->db->update('proizvod_relacija', array('status'=> '0')); 
+        $this->db->update('proizvod_relacija', array('status'=> '-1')); 
     }
     
    //////////////// RELACIJE PROIZVODA KRAJ ///////////////////////////////////
