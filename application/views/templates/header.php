@@ -64,7 +64,7 @@
                 <div class="top-menu">
                     <!-- start header menu -->
                     <ul class="megamenu skyblue">
-<!--                        <li><a class="color1" href="#">Home</a></li>
+                       <li><a class="color1" href="#">Home</a></li>
                         <li class="grid"><a class="color2" href="products.html">Products</a>
                             <div class="megapanel">
                                 <div class="row">
@@ -247,8 +247,8 @@
                                     <div class="col1"></div>
                                 </div>
                             </div>
-                        </li>-->
-<?php  print_r($menu); 
+                        </li>
+<?php // print_r($menu); 
 //foreach($menu as $m){
 //    print_r($m);
 //    echo '<li><a href="' . $base_url.''.$m->url . '">' . $m->nazivMeni . '</a></li>';

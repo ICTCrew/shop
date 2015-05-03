@@ -39,14 +39,31 @@
 		});
 	  </script>
 	<!--end slider -->
+        <!--start categories -->
         <?php include('templates/categories.php'); ?>
+        <!--end categories -->
 			   <div class="col-md-9 right-grid">
 					<!-- start slider -->
 					<!----->
 					<div class="slider">	  
 						  <div class="callbacks_container">
 							  <ul class="rslides" id="slider">
-								 <li>
+                                                              <?php // print_r($slider); ?>
+                                                              <?php 
+                                                                foreach ($slider as $ss){
+                                                                  // print_r($ss);
+                                                                   
+                                                                    foreach($ss as $s){
+                                                                        // print_r($s);
+                                                                    echo '<li><img src="' . $base_url.''.$s['PicSrc'] . '" alt="'.$s['title'].'"/></li>';
+                                                                    }
+                                                                  
+//                                                                    if($s['nazivSlajder'] =="main_sliedr"){
+//                                                                }
+                                                                    
+                                                                    }
+                                                              ?>
+<!--								 <li>
 									 <img src="images/slider1.jpg" alt=""/>
 								 </li>
 								 <li>
@@ -57,7 +74,7 @@
 								 </li>
 								 <li>
 									 <img src="images/slider4.jpg" alt=""/>
-								 </li>
+								 </li>-->
 							  </ul>	      
 						  </div>
 					</div>
