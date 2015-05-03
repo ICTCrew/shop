@@ -82,7 +82,7 @@ class Frontend_model extends CI_Model{
     
     public function getStranica($url) {
         $query= $this->db->select('idStranica, nazivStranica, title, description, keywords, sadrzaj');
-        $query= $this->db->where('s.status', 2);
+        $query= $this->db->where('s.status', 1);
         $query= $this->db->where('s.url', $url);
         $query= $this->db->get('stranica s');
         return $query->result_array();

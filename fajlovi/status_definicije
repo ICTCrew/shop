@@ -1,5 +1,5 @@
 -status(general):
-    0-"obrisan" iz baze
+    (-1)-"obrisan" iz baze
     1-neaktivan
     2-aktivan
 

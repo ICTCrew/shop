@@ -123,9 +123,10 @@ class Test_Controller extends CI_Controller{
         $data['sve']=  $this->catalogue_model->deleteProizvodRelacija(array('idProizvod'=>'1', 'idSlicanProizvod'=>'4', 'idTipRelacija'=>'1'));
         
         $data['sve']=  $this->proizvod_model->getBrendoviKategorije(3);
-        */
-        $data['sve']=  $this->proizvod_model->getKategorijeBrendova(3);
         
+        $data['sve']=  $this->proizvod_model->getKategorijeBrendova(3);
+        */
+        $data['sve']=  $this->proizvod_model->getOsobineKategorijeBrenda(2, 2);
         
         
         
