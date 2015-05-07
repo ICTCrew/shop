@@ -25,8 +25,8 @@
 					
 				});
 			</script>
-			<script type="text/javascript" src="<?php echo $base_url; ?>js/jquery.flexisel.js"></script>
-<!-- start slider -->
+                        <script type="text/javascript" src="<?php echo $base_url; ?>js/jquery.flexisel.js"></script>
+                        <!-- start slider -->
 	<script src="<?php echo $base_url; ?>js/responsiveslides.min.js"></script>
 	 <script>
 		$(function () {
@@ -100,7 +100,7 @@
 		          <ul id="flexiselDemo">	
 					<li>
 						<div class="ipad text-center">
-							<img src="images/phone.jpg" alt="" />
+							<img src="<?php echo $base_url; ?>images/phone.jpg" alt="" />
 							<h4>Ipad Mini</h4>
 							<h3>$499</h3>
 							<ul>
@@ -116,7 +116,7 @@
 					</li>
 					<li>
 					<div class="ipad text-center">
-							<img src="images/phone1.jpg" alt="" />
+							<img src="<?php echo $base_url; ?>images/phone1.jpg" alt="" />
 							<h4>Ipad Mini</h4>
 							<h3>$499</h3>
 							<ul>
@@ -132,7 +132,7 @@
 					</li>	
 					<li>
 					<div class="ipad text-center">
-							<img src="images/phone2.jpg" alt="" />
+							<img src="<?php echo $base_url; ?>images/phone2.jpg" alt="" />
 							<h4>Ipad Mini</h4>
 							<h3>$499</h3>
 							<ul>
@@ -148,7 +148,7 @@
 					</li>	
 					<li>
 					<div class="ipad text-center">
-							<img src="images/phone3.jpg" alt="" />
+							<img src="<?php echo $base_url; ?>images/phone3.jpg" alt="" />
 							<h4>Ipad Mini</h4>
 							<h3>$499</h3>
 							<ul>
@@ -164,7 +164,7 @@
 					</li>	
 					<li>
 					<div class="ipad text-center">
-							<img src="images/phone4.jpg" alt="" />
+							<img src="<?php echo $base_url; ?>images/phone4.jpg" alt="" />
 							<h4>Ipad Mini</h4>
 							<h3>$499</h3>
 							<ul>
@@ -186,42 +186,42 @@
 					  <ul id="flexiselDemo1">	
 						<li>
 							<div class="client">
-								<img src="images/c1.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c1.jpg" alt="" />
 							</div>
 						</li>
 						<li>
 							<div class="client">
-								<img src="images/c2.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c2.jpg" alt="" />
 							</div>
 						</li>	
 						<li>
 							<div class="client">
-								<img src="images/c4.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c4.jpg" alt="" />
 							</div>
 						</li>	
 						<li>
 							<div class="client">
-								<img src="images/c3.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c3.jpg" alt="" />
 							</div>
 						</li>	
 						<li>
 							<div class="client">
-								<img src="images/c5.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c5.jpg" alt="" />
 							</div>
 						</li>	
 						<li>
 							<div class="client">
-								<img src="images/c6.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c6.jpg" alt="" />
 							</div>
 						</li>
 						<li>
 							<div class="client">
-								<img src="images/c7.jpg" alt="" />
+								<img src="<?php echo $base_url; ?>images/c7.jpg" alt="" />
 							</div>
 						</li>
 					</ul>
 				</div>
-				<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+				<link rel="stylesheet" href="<?php echo $base_url; ?>css/flexslider.css" type="text/css" media="screen" />
 					<script type="text/javascript">
 				$(window).load(function() {
 					$("#flexiselDemo1").flexisel({
@@ -249,7 +249,7 @@
 					
 				});
 			</script>
-			<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+			<script type="text/javascript" src="<?php echo $base_url; ?>js/jquery.flexisel.js"></script>
 			</div>
 			 
 			   </div>

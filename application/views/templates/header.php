@@ -11,6 +11,9 @@
         <link href="<?php echo $base_url; ?>css/bootstrap.css" rel='stylesheet' type='text/css' />
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="<?php echo $base_url; ?>js/jquery.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="<?php echo $base_url; ?>js/jquery-ui.js"></script>
+        <link href="<?php echo $base_url; ?>css/jquery-ui.css" rel='stylesheet' type='text/css' />
         <!-- Custom Theme files -->
         <link href="<?php echo $base_url; ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
         <!-- Custom Theme files -->
@@ -35,7 +38,7 @@
             <div class="wrap">
                 <div class="header-bottom">
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo.jpg" class="img-responsive" alt="" /></a>
+                        <a href="index.html"><img src="<?php echo $base_url; ?>images/logo.jpg" class="img-responsive" alt="" /></a>
                     </div>
                     <div class="header-right">
                         <ul>
@@ -251,7 +254,7 @@
 <?php // print_r($menu); 
 //foreach($menu as $m){
 //    print_r($m);
-//    echo '<li><a href="' . $base_url.''.$m->url . '">' . $m->nazivMeni . '</a></li>';
+//    echo '<li><a href="' . $base_url.''.$m['url'] . '">' . $m['nazivMeni'] . '</a></li>';
 //} ?>
                     </ul> 
                 </div>

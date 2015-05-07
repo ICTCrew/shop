@@ -5,9 +5,9 @@
 					<div class=" top-nav rsidebar span_1_of_left">
 	<h3 class="cate">CATEGORIES</h3>
 	<ul class="menu">
-			<li class="item1"><a href="#">Categorie1<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+			<li class="item1"><a href="#">Categorie1<img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/> </a>
 				<ul class="cute">
-					<li class="subitem1"><a href="products.html">Cute Kittens<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+					<li class="subitem1"><a href="products.html">Cute Kittens<img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/> </a>
 						<ul class="cute">
 							<li class="subitem1"><a href="products.html">Cute Kittens </a></li>
 							<li class="subitem2"><a href="products.html">Strange Stuff </a></li>
@@ -18,13 +18,13 @@
 					<li class="subitem3"><a href="products.html">Automatic Fails </a></li>
 				</ul>
 			</li>
-			<li class="item1"><a href="#">Categorie2<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+			<li class="item1"><a href="#">Categorie2<img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/> </a>
 				<ul class="cute">
-					<li class="subitem1"><a href="products.html">Cute Kittens <img class="arrow-img" src="images/arrow1.png" alt=""/></a>
+					<li class="subitem1"><a href="products.html">Cute Kittens <img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/></a>
 						<ul class="cute">
-							<li class="subitem1"><a href="products.html">Cute Kittens<img class="arrow-img" src="images/arrow1.png" alt=""/> </a>
+							<li class="subitem1"><a href="products.html">Cute Kittens<img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/> </a>
 								<ul class="cute">
-									<li class="subitem1"><a href="products.html">Cute Kittens <img class="arrow-img" src="images/arrow1.png" alt=""/></a>
+									<li class="subitem1"><a href="products.html">Cute Kittens <img class="arrow-img" src="<?php echo $base_url; ?>images/arrow1.png" alt=""/></a>
 										<ul class="cute">
 											<li class="subitem1"><a href="products.html">Cute Kittens </a></li>
 											<li class="subitem2"><a href="products.html">Strange Stuff </a></li>

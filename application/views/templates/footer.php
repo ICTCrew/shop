@@ -73,7 +73,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<div class="cards text-center">
-					<img src="images/cards.jpg" alt="" />
+					<img src="<?php echo $base_url; ?>images/cards.jpg" alt="" />
 				</div>
 				<div class="copyright text-center">
 					<p>Copyright &copy; 2015 All rights reserved | Template by  <a href="http://w3layouts.com">  W3layouts</a></p>
