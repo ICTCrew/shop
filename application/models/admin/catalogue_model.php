@@ -172,6 +172,18 @@ class Catalogue_model extends Backend_model{
         $query= $this->db->get('proizvod p', $limit, $offset);
         return $query->result_array();
     }
+    
+    public function getProizvodi($limit=0, $offset=0, $kolSort='modelOpis', $tipSort='asc') {
+        $query= $this->db->select('p.idProizvod,p.idKategorija, datumKreiranja, barkod, p.title, p.description, modelOpis, opis, osobine, statusKolicinaVidljivost, statusPopust, p.status, cena, s.url, tp.nazivTip, b.naziv, k.nazivKategorija');
+        $query= $this->db->join('slika s', 'p.idSlika = s.idSlika');
+        $query= $this->db->join('tip_proizvoda tp', 'p.idTipProizvod = tp.idTipProizvod');
+        $query= $this->db->join('brend b', 'b.idBrend = p.idBrend');
+        $query= $this->db->join('kategorija k', 'k.idKategorija = p.idKategorija');
+        $query= $this->db->where('p.status>', -1);
+        $query= $this->db->order_by($kolSort, $tipSort);
+        $query= $this->db->get('proizvod p', $limit, $offset);
+        return $query->result_array();
+    }
    
     
     /**         citanje i "prepisivanje" osobina proizvoda u string u tabelu proizvod

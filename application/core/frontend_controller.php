@@ -13,6 +13,7 @@ class frontend_controller extends MY_Controller {
     }
         
     public function loadView($view, $data = array()) {
+        $data['base_url']=  base_url();   
         $data['menu'] = $this->_loadMenu();
         $data['slider'] = $this->_loadSlider();
         $this->load->view('templates/header', $data);
