@@ -20,13 +20,7 @@ class Kaca extends frontend_controller{
     
     public function index() {
         $podaci['base_url']=  base_url();
-//           $this->load->view('templates/header',$podaci);
-//           $this->load->view('templates/categories',$podaci);
-//           $this->load->view('index',$podaci);
-//           $this->load->view('templates/footer',$podaci);
         $this->loadView('index',$podaci);
-        
-        
     }
     public function reg(){
              $podaci['base_url']=  base_url();

@@ -27,10 +27,149 @@
         <!-- start menu -->
         <link href="<?php echo $base_url; ?>css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript" src="<?php echo $base_url; ?>js/megamenu.js"></script>
-        <script>$(document).ready(function() {
+        <script>$(document).ready(function () {
                 $(".megamenu").megamenu();
             });</script>
         <link rel="stylesheet" href="<?php echo $base_url; ?>css/flexslider.css" type="text/css" media="screen" />				
+        <!-- Skript for user interface -->
+        <script type="text/javascript">
+            $(init);
+
+            function init() {
+                $('.header, .navigation-strip, .banner, .right-grid, .footer').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('.logo').draggable({
+                    cursor: 'move',
+                    containment: '.header',
+                    stop: handleDragStop
+                });
+                $('.header-right').draggable({
+                    cursor: 'move',
+                    containment: '.header',
+                    stop: handleDragStop
+                });
+                $('.header-right>ul>li').draggable({
+                    cursor: 'move',
+                    containment: '.header-right',
+                    stop: handleDragStop
+                });
+                $('.top-menu, .search').draggable({
+                    cursor: 'move',
+                    containment: '.navigation-strip',
+                    stop: handleDragStop
+                });
+                $('.best-sellers-head').draggable({
+                    cursor: 'move',
+                    containment: '.best-sellers',
+                    stop: handleDragStop
+                });
+                $('.best-sellers-menu').draggable({
+                    cursor: 'move',
+                    containment: '.best-sellers',
+                    stop: handleDragStop
+                });
+                $('.best-sellers').draggable({
+                    cursor: 'move',
+                    containment: '.right-grid',
+                    stop: handleDragStop
+                });
+                $('.device').draggable({
+                    cursor: 'move',
+                    containment: '.right-grid',
+                    stop: handleDragStop
+                });
+                $('.navbar-custom-menu, .sidebar-toggle').draggable({
+                    cursor: 'move',
+                    containment: '.main-header',
+                    stop: handleDragStop
+                });
+                $('.clients').draggable({
+                    cursor: 'move',
+                    containment: '.right-grid',
+                    stop: handleDragStop
+                });
+                $('#main').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('.formdiv').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('.login').draggable({
+                    cursor: 'move',
+                    containment: '.login-signup-form',
+                    stop: handleDragStop
+                });
+                $('.sign-up').draggable({
+                    cursor: 'move',
+                    containment: '.login-signup-form',
+                    stop: handleDragStop
+                });
+                $('.benefits').draggable({
+                    cursor: 'move',
+                    containment: '.login-signup-form',
+                    stop: handleDragStop
+                });
+                $('.singel_right').draggable({
+                    cursor: 'move',
+                    containment: '.new-product',
+                    stop: handleDragStop
+                });
+                $('.map').draggable({
+                    cursor: 'move',
+                    containment: '.new-product',
+                    stop: handleDragStop
+                });
+                $('.login-left').draggable({
+                    cursor: 'move',
+                    containment: '.login-page',
+                    stop: handleDragStop
+                });
+                $('.login-right').draggable({
+                    cursor: 'move',
+                    containment: '.login-page',
+                    stop: handleDragStop
+                });
+                $('.content_top').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('.content_middle').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('#tabs').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+                $('#tabs>ul>li').draggable({
+                    cursor: 'move',
+                    containment: '#tabs',
+                    stop: handleDragStop
+                });
+                $('.filter').draggable({
+                    cursor: 'move',
+                    containment: 'document',
+                    stop: handleDragStop
+                });
+            }
+
+            function handleDragStop(event, ui) {
+                var offsetXPos = parseInt(ui.offset.left);
+                var offsetYPos = parseInt(ui.offset.top);
+                //alert( "Zaustavljeno!\n\nOffset: (" + offsetXPos + ", " + offsetYPos + ")\n");
+            }
+        </script>
+        <!-- End of skript for user interface -->
     </head>
     <body>
         <!-- header -->
@@ -44,11 +183,11 @@
                         <ul>
                             <li>
                                 <i class="user"></i>
-                                <a href="account.html">My Account</a>
+                                <a href="account">My Account</a>
                             </li>
                             <li class="login">
                                 <i class="lock"></i>
-                                <a href="login.html">Login | Sign Up</a>
+                                <a href="login">Login | Sign Up</a>
                             </li>
                             <li>
                                 <i class="cart"></i>
@@ -66,197 +205,25 @@
             <div class="navigation-strip">
                 <div class="top-menu">
                     <!-- start header menu -->
-                    <ul class="megamenu skyblue">
-                       <li><a class="color1" href="#">Home</a></li>
-                        <li class="grid"><a class="color2" href="products.html">Products</a>
-                            <div class="megapanel">
-                                <div class="row">
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>shop</h4>
-                                            <ul>
-                                                <li><a href="products.html">new arrivals</a></li>
-                                                <li><a href="products.html">men</a></li>
-                                                <li><a href="products.html">women</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">brands</a></li>
-                                            </ul>	
-                                        </div>							
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>help</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>							
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>my company</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>												
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>account</h4>
-                                            <ul>
-                                                <li><a href="products.html">login</a></li>
-                                                <li><a href="products.html">create an account</a></li>
-                                                <li><a href="products.html">create wishlist</a></li>
-                                                <li><a href="products.html">my shopping bag</a></li>
-                                                <li><a href="products.html">brands</a></li>
-                                                <li><a href="products.html">create wishlist</a></li>
-                                            </ul>	
-                                        </div>						
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>my company</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>popular</h4>
-                                            <ul>
-                                                <li><a href="products.html">new arrivals</a></li>
-                                                <li><a href="products.html">men</a></li>
-                                                <li><a href="products.html">women</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col2"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a class="color4" href="#">Shops</a></li>				
-                        <li><a class="color5" href="contact.html">Contact</a>
-                            <div class="megapanel">
-                                <div class="row">
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>shop</h4>
-                                            <ul>
-                                                <li><a href="products.html">new arrivals</a></li>
-                                                <li><a href="products.html">men</a></li>
-                                                <li><a href="products.html">women</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">brands</a></li>
-                                            </ul>	
-                                        </div>							
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>help</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>							
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>my company</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>												
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>account</h4>
-                                            <ul>
-                                                <li><a href="products.html">login</a></li>
-                                                <li><a href="products.html">create an account</a></li>
-                                                <li><a href="products.html">create wishlist</a></li>
-                                                <li><a href="products.html">my shopping bag</a></li>
-                                                <li><a href="products.html">brands</a></li>
-                                                <li><a href="products.html">create wishlist</a></li>
-                                            </ul>	
-                                        </div>						
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>my company</h4>
-                                            <ul>
-                                                <li><a href="products.html">trends</a></li>
-                                                <li><a href="products.html">sale</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>
-                                    </div>
-                                    <div class="col1">
-                                        <div class="h_nav">
-                                            <h4>popular</h4>
-                                            <ul>
-                                                <li><a href="products.html">new arrivals</a></li>
-                                                <li><a href="products.html">men</a></li>
-                                                <li><a href="products.html">women</a></li>
-                                                <li><a href="products.html">accessories</a></li>
-                                                <li><a href="products.html">kids</a></li>
-                                                <li><a href="products.html">style videos</a></li>
-                                            </ul>	
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col2"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                    <div class="col1"></div>
-                                </div>
-                            </div>
-                        </li>
-<?php // print_r($menu); 
+                  <ul class="megamenu skyblue">
+                        <li><a class="color1" href="index">Home</a></li>
+                        <li class="grid"><a class="color2" href="products">Products</a> </li>
+                        <li><a class="color4" href="account">Account</a></li>				
+                        <li><a class="color3" href="contact">Contact</a></li>
+                        <li><a class="color5" href="reg">Register</a></li>
+                        <li><a class="color6" href="login">Login</a></li>
+                        <li><a class="color7" href="single">Single product</a></li>
+                        <li><a class="color8" href="filter">Filter products</a></li>
+                    </ul> 
+                        <?php
+                      //   print_r($menu); 
+//                        echo "<ul>";
 //foreach($menu as $m){
 //    print_r($m);
 //    echo '<li><a href="' . $base_url.''.$m['url'] . '">' . $m['nazivMeni'] . '</a></li>';
-//} ?>
-                    </ul> 
+//} 
+//      echo "</ul>";                  ?>
+
                 </div>
                 <!-- start search -->
                 <div class="search">
@@ -264,8 +231,8 @@
                         <form>
                             <input type="submit" value="">
                             <input type="text" value="Search for a product, category or brand" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                                                     this.value = 'Search for a product, category or brand';
-                                                                 }"/>
+                                        this.value = 'Search for a product, category or brand';
+                                    }"/>
                         </form>
                     </div>
                 </div>

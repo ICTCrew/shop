@@ -12,18 +12,18 @@
             <p>Lorem ipsum dolor sit amet enim. Etiam ullamcorp uspendisse a pellentesque.</p>
         </div>
         <div class="register">
-            <form> 
+            <form class="form"> 
                 <div class="register-top-grid">
                     <h3>PERSONAL INFORMATION</h3>
-                    <div>
+                    <div class="formdiv">
                         <span>First Name</span>
                         <input type="text"> 
                     </div>
-                    <div>
+                    <div class="formdiv">
                         <span>Last Name</span>
                         <input type="text"> 
                     </div>
-                    <div>
+                    <div class="formdiv">
                         <span>Email Address</span>
                         <input type="text"> 
                     </div>
@@ -33,18 +33,18 @@
         </div>
 
         <div class="clearfix"></div>
-        <div class="sgn">
+        <div class="sgn  formdiv">
             <input type="checkbox" name="is_subscribed" title="Sign Up for Newsletter" value="1" id="is_subscribed" class="checkbox"/>
             <label for="is_subscribed">Sign Up for Newsletter</label>
             <div class="clearfix"></div>
         </div>
         <div class="register-bottom-grid">
             <h3>LOGIN INFORMATION</h3>
-            <div>
+            <div class="formdiv">
                 <span>Password</span>
                 <input type="password">
             </div>
-            <div>
+            <div class="formdiv">
                 <span>Confirm Password</span>
                 <input type="password">
             </div>
