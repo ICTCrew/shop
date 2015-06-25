@@ -60,8 +60,6 @@ class Test_Controller extends CI_Controller{
         
         $data['sve']=  $this->frontend_model->getSlajder();
         
-        $data['sve']=  $this->frontend_model->getMeni();
-        
         $data['sve']=  $this->backend_model->getOpcije(1);
         
         $data['sve']=  $this->proizvod_model->search("opis2");
@@ -125,10 +123,10 @@ class Test_Controller extends CI_Controller{
         $data['sve']=  $this->proizvod_model->getBrendoviKategorije(3);
         
         $data['sve']=  $this->proizvod_model->getKategorijeBrendova(3);
-        */
+        
         $data['sve']=  $this->proizvod_model->getOsobineKategorijeBrenda(2, 2);
-        
-        
+        */
+        $data['sve']=  $this->frontend_model->getMeni();
         
         
         
